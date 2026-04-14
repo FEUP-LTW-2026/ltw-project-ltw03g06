@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>LTW GYM - Trainers</title>
@@ -9,18 +9,25 @@
 </head>
 <body>
 <header>
-    <nav>
-        <h2>LTW GYM</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="trainers.html" class="active">Trainers</a></li>
-            <li><a href="classes.html">Classes</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
+    <nav class="main-nav">
+        <a href="index.html" class="logo">LTW GYM</a>
+        
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="trainers.html" class="nav-link active">Trainers</a></li>
+            <li><a href="classes.html" class="nav-link">Classes</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
+
         <div class="nav-actions">
-            <a href="#">🚪</a>
-            <a href="#">🔍</a>
+            <button class="icon-btn" aria-label="Search">
+                <span class="emoji-icon">🔍</span>
+            </button>
+            <a href="login.html" class="nav-link login-link">
+                <span class="emoji-icon">👤</span>
+                <span>LOG IN</span>
+            </a>
         </div>
     </nav>
 </header>
@@ -28,7 +35,6 @@
 <main class="trainers-page">
     <h1>Meet our trainers!</h1>
     
-    <!-- Each trainer card is a flex item, and each trainer-grid is a row-->
     <div class="trainer-grid">
         <article class="trainer-card">
             <div class="img-box"></div>
@@ -41,14 +47,14 @@
             <div class="img-box"></div>
             <div class="info">
                 <h3>John Pork</h3>
-                <p>Specializes in strength training and nutrition coaching.</p>
+                <p>Specializes in Olympic lifting and endurance.</p>
             </div>
         </article>
         <article class="trainer-card">
             <div class="img-box"></div>
             <div class="info">
                 <h3>John Cannons</h3>
-                <p>Specializes in strength training and nutrition coaching.</p>
+                <p>Specializes in bodybuilding and contest prep.</p>
             </div>
         </article>
     </div>
@@ -59,21 +65,9 @@
         <p>SOCIAL</p>
         <div class="gold-line"></div>
         <ul>
-            <li>
-                <a href="#" aria-label="Facebook">
-                    <svg class="social-icon"><use href="assets/img/icons.svg#icon-facebook"></use></svg>
-                </a>
-            </li>
-            <li>
-                <a href="#" aria-label="Instagram">
-                    <svg class="social-icon"><use href="assets/img/icons.svg#icon-instagram"></use></svg>
-                </a>
-            </li>
-            <li>
-                <a href="#" aria-label="X">
-                    <svg class="social-icon"><use href="assets/img/icons.svg#icon-x"></use></svg>
-                </a>
-            </li>
+            <li><a href="#"><svg><use href="assets/img/icons.svg#icon-facebook"></use></svg></a></li>
+            <li><a href="#"><svg><use href="assets/img/icons.svg#icon-instagram"></use></svg></a></li>
+            <li><a href="#"><svg><use href="assets/img/icons.svg#icon-x"></use></svg></a></li>
         </ul>
     </div>
 </footer>
