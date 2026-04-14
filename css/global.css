@@ -97,25 +97,27 @@ nav ul li a:hover {
 footer {
     flex-shrink: 0;
     padding: 2rem 5%;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .footer-content {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .footer-content p {
     margin: 0;
     font-weight: bold;
     font-size: 0.8rem;
+    color: var(--text-light); /* "SOCIAL" should be white */
 }
 
+/* The gold line between the text and icons */
 .gold-line {
-    width: 30px;
-    height: 3px;
+    width: 40px;
+    height: 2px;
     background-color: var(--gold);
 }
 
@@ -127,9 +129,18 @@ footer {
     padding: 0;
 }
 
-.footer-content a {
-    color: white;
-    text-decoration: none;
+/* SVG ICON STYLING */
+.footer-content svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--text-light); /* Sets icons to white initially */
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.footer-content a:hover svg {
+    fill: var(--gold);      /* Turns gold on hover */
+    transform: translateY(-3px); /* Small bounce effect */
 }
 
 /* BUTTONS */
