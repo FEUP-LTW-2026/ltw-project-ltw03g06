@@ -1,0 +1,55 @@
+/* css/trainers.css */
+.trainers-page {
+    padding: 4rem 5%;
+}
+
+.trainers-page h1 {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+}
+
+.trainer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.trainer-card {
+    background: var(--card-bg);
+    color: #222;
+    padding: 25px;
+    border-radius: 8px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.img-box {
+    width: 100px;
+    height: 100px;
+    background: #e0e0e0;
+    flex-shrink: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-box::after {
+    content: '👤';
+    font-size: 2rem;
+    opacity: 0.3;
+}
+
+.info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    color: #000;
+}
+
+.info p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #555;
+}

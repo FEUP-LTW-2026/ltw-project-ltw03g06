@@ -1,0 +1,155 @@
+/* css/global.css */
+
+:root {
+    --gold: #D4AF37;
+    --dark-bg: #121212;
+    --footer-bg: #0a0a0a;
+    --card-bg: #ffffff;
+    --text-light: #ffffff;
+    --text-muted: #dfdfdf;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: var(--dark-bg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../assets/img/pexels-tima-miroshnichenko-6388373.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    color: var(--text-light);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 1.5rem 5%;
+    flex-shrink: 0;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* NAVIGATION */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h2 {
+    color: var(--gold);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+/* Active Link State */
+nav ul li a.active {
+    color: var(--gold);
+}
+
+nav ul li a:hover {
+    color: var(--gold);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-actions a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/* FOOTER */
+footer {
+    flex-shrink: 0;
+    padding: 2rem 5%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-content p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.gold-line {
+    width: 30px;
+    height: 3px;
+    background-color: var(--gold);
+}
+
+.footer-content ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-content a {
+    color: white;
+    text-decoration: none;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+    text-align: center;
+}
+
+.btn-gold {
+    background-color: var(--gold);
+    color: #000;
+}
+
+.btn-outline {
+    border: 2px solid #fff;
+    color: #fff;
+}

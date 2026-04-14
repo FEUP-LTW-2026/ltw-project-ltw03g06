@@ -1,34 +1,70 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>LTW GYM</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <header>
-            <nav>
-            <h2>LTW GYM</h2>
+<head>
+    <meta charset="utf-8">
+    <title>LTW GYM - Trainers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/trainers.css">
+</head>
+<body>
+<header>
+    <nav>
+        <h2>LTW GYM</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="trainers.html" class="active">Trainers</a></li>
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#">🚪</a>
+            <a href="#">🔍</a>
+        </div>
+    </nav>
+</header>
 
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./trainers.html">Trainers</a></li>
-                <li><a href="./classes.html">Classes</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-
-            <div>
-                <a href="#">Login</a>
-                <a href="#">Search</a>
+<main class="trainers-page">
+    <h1>Meet our trainers!</h1>
+    
+    <!-- Each trainer card is a flex item, and each trainer-grid is a row-->
+    <div class="trainer-grid">
+        <article class="trainer-card">
+            <div class="img-box"></div>
+            <div class="info">
+                <h3>John Doe</h3>
+                <p>Specializes in strength training and nutrition coaching.</p>
             </div>
-        </header>
-    </body>
+        </article>
+        <article class="trainer-card">
+            <div class="img-box"></div>
+            <div class="info">
+                <h3>John Pork</h3>
+                <p>Specializes in strength training and nutrition coaching.</p>
+            </div>
+        </article>
+        <article class="trainer-card">
+            <div class="img-box"></div>
+            <div class="info">
+                <h3>John Cannons</h3>
+                <p>Specializes in strength training and nutrition coaching.</p>
+            </div>
+        </article>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p>SOCIAL</p>
+        <div class="gold-line"></div>
+        <ul>
+            <li><a href="#">FB</a></li>
+            <li><a href="#">IG</a></li>
+            <li><a href="#">TW</a></li>
+            <li><a href="#">✉</a></li>
+        </ul>
+    </div>
+</footer>
+</body>
 </html>
