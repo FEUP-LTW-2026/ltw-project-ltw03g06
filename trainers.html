@@ -8,24 +8,25 @@
     <link rel="stylesheet" href="css/trainers.css">
 </head>
 <body>
+
 <header>
     <nav class="main-nav">
         <a href="index.html" class="logo">LTW GYM</a>
         
         <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="trainers.html" class="nav-link active">Trainers</a></li>
-            <li><a href="classes.html" class="nav-link">Classes</a></li>
-            <li><a href="about.html" class="nav-link">About Us</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
+            <li><a href="index.html" class="nav-link u-lift">Home</a></li>
+            <li><a href="trainers.html" class="nav-link active u-lift">Trainers</a></li>
+            <li><a href="classes.html" class="nav-link u-lift">Classes</a></li>
+            <li><a href="about.html" class="nav-link u-lift">About Us</a></li>
+            <li><a href="contact.html" class="nav-link u-lift">Contact</a></li>
         </ul>
 
         <div class="nav-actions">
-            <button class="icon-btn" aria-label="Search">
-                <span class="emoji-icon">🔍</span>
+            <button class="icon-btn u-lift" aria-label="Search">
+                <svg class="nav-icon"><use href="assets/img/icons.svg#icon-search"></use></svg>
             </button>
-            <a href="login.html" class="nav-link login-link">
-                <span class="emoji-icon">👤</span>
+            <a href="login.html" class="nav-link u-lift">
+                <svg class="nav-icon"><use href="assets/img/icons.svg#icon-log-in"></use></svg>
                 <span>LOG IN</span>
             </a>
         </div>
@@ -36,22 +37,30 @@
     <h1>Meet our trainers!</h1>
     
     <div class="trainer-grid">
-        <article class="trainer-card">
-            <div class="img-box"></div>
+        <article class="trainer-card u-lift">
+            <div class="img-box">
+                <svg class="nav-icon"><use href="assets/img/icons.svg#icon-user"></use></svg>
+            </div>
             <div class="info">
                 <h3>John Doe</h3>
                 <p>Specializes in strength training and nutrition coaching.</p>
             </div>
         </article>
-        <article class="trainer-card">
-            <div class="img-box"></div>
+        
+        <article class="trainer-card u-lift">
+            <div class="img-box">
+                <svg class="nav-icon"><use href="assets/img/icons.svg#icon-user"></use></svg>
+            </div>
             <div class="info">
                 <h3>John Pork</h3>
                 <p>Specializes in Olympic lifting and endurance.</p>
             </div>
         </article>
-        <article class="trainer-card">
-            <div class="img-box"></div>
+        
+        <article class="trainer-card u-lift">
+            <div class="img-box">
+                <svg class="nav-icon"><use href="assets/img/icons.svg#icon-user"></use></svg>
+            </div>
             <div class="info">
                 <h3>John Cannons</h3>
                 <p>Specializes in bodybuilding and contest prep.</p>
@@ -65,11 +74,12 @@
         <p>SOCIAL</p>
         <div class="gold-line"></div>
         <ul>
-            <li><a href="#"><svg><use href="assets/img/icons.svg#icon-facebook"></use></svg></a></li>
-            <li><a href="#"><svg><use href="assets/img/icons.svg#icon-instagram"></use></svg></a></li>
-            <li><a href="#"><svg><use href="assets/img/icons.svg#icon-x"></use></svg></a></li>
+            <li><a href="#" class="u-lift"><svg class="social-icon"><use href="assets/img/icons.svg#icon-facebook"></use></svg></a></li>
+            <li><a href="#" class="u-lift"><svg class="social-icon"><use href="assets/img/icons.svg#icon-instagram"></use></svg></a></li>
+            <li><a href="#" class="u-lift"><svg class="social-icon"><use href="assets/img/icons.svg#icon-x"></use></svg></a></li>
         </ul>
     </div>
 </footer>
+
 </body>
 </html>
