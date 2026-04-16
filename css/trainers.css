@@ -2,7 +2,7 @@
 
 .trainers-page {
     padding: 4rem 5%;
-    flex: 1; /* Ensures footer stays at bottom */
+    flex: 1; /* Pushes footer to bottom */
 }
 
 .trainers-page h1 {
@@ -14,6 +14,7 @@
     text-align: center;
 }
 
+/* Trainer Cards */
 .trainer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -23,7 +24,7 @@
 }
 
 .trainer-card {
-    background: rgba(255, 255, 255, 0.05); /* Dark premium card background */
+    background: rgba(255, 255, 255, 0.05); /* Premium dark card tint */
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 4px;
@@ -33,27 +34,41 @@
     transition: border-color var(--transition), background var(--transition);
 }
 
-/* Card hover effect matching your premium feel */
 .trainer-card:hover {
     border-color: var(--gold);
     background: rgba(255, 255, 255, 0.08);
 }
 
+/* Squircle Image Container */
 .img-box {
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 90px;
+    height: 90px;
+    background: rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
-    border-radius: 50%; /* Circular images look cleaner for profiles */
+    border-radius: 22px; /* The Squircle shape */
+    overflow: hidden; 
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--gold);
 }
 
+.trainer-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter var(--transition), transform var(--transition);
+}
+
+.trainer-card:hover .trainer-img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* Text Hierarchy */
 .info h3 {
     margin: 0 0 8px 0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 1px;

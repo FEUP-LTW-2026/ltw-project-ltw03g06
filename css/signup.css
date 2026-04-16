@@ -1,26 +1,29 @@
 /* css/signup.css */
 
 .signup-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #333;
+    max-width: 550px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.05); /* Matching trainer cards */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
 }
 
 .signup-form h1 {
     text-align: center;
-    color: var(--gold);
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: -1px;
     margin-bottom: 0.5rem;
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 
 .signup-form p {
     text-align: center;
-    color: #666;
-    margin-bottom: 2rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
 }
 
 .form-group {
@@ -29,19 +32,26 @@
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     font-weight: 600;
-    color: #333;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold); /* Gold labels for premium feel */
 }
 
+/* Dark themed inputs */
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    padding: 0.9rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-family: var(--font-main);
+    transition: border-color var(--transition);
 }
 
 .form-group input:focus,
@@ -52,59 +62,32 @@
 
 .checkbox-group {
     display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 2rem 0;
 }
 
 .checkbox-group input[type="checkbox"] {
-    width: auto;
-    margin-top: 0.25rem;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--gold);
 }
 
 .checkbox-group label {
     margin-bottom: 0;
-    font-weight: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text-muted);
 }
 
 .checkbox-group label a {
     color: var(--gold);
-    text-decoration: none;
-}
-
-.checkbox-group label a:hover {
     text-decoration: underline;
 }
 
+/* Submit button uses global .btn--gold styles */
 .btn-submit {
     width: 100%;
-    padding: 0.75rem;
-    background-color: var(--gold);
-    color: #fff;
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-submit:hover {
-    background-color: #b8941f;
-}
-
-.btn-submit:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.5);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .signup-container {
-        margin: 1rem;
-        padding: 1rem;
-    }
-
-    .signup-form h1 {
-        font-size: 1.5rem;
-    }
+    font-family: var(--font-main);
 }
