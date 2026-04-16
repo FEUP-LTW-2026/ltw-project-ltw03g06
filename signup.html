@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+
+    <header>
+        <nav class="main-nav">
+            <div class="logo">LTW GYM</div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="trainers.html" class="nav-link">Trainers</a></li>
+                <li><a href="classes.html" class="nav-link">Classes</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="icon-btn" aria-label="Search">
+                    <span class="emoji-icon">🔍</span>
+                </button>
+
+                <a href="login.html" class="nav-link login-link">
+                    <span class="emoji-icon">👤</span>
+                    <span>LOG IN</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="signup-container">
+        <div class="signup-form">
+            <h1>Join LTW GYM</h1>
+            <p>Join us and start your fitness journey</p>
+
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Contact</label>
+                    <input type="phone" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" id="birthdate" name="birthdate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="plan">Membership Plan</label>
+                    <select id="plan" name="plan" required>
+                        <option value="">Select a plan</option>
+                        <option value="monthly">Monthly - €29.99</option>
+                        <option value="quarterly">Quarterly - €79.99</option>
+                        <option value="annual">Annual - €299.99</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree with the <a href="#" target="_blank">terms and conditions</a></label>
+                </div>
+
+                <button type="submit" class="btn-submit">Sign Up</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>SOCIAL</p>
+            <div class="gold-line"></div>
+            <ul>
+                <li>
+                    <a href="#" aria-label="Facebook">
+                        <svg class="social-icon"><use href="assets/img/icons.svg#icon-facebook"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Instagram">
+                        <svg class="social-icon"><use href="assets/img/icons.svg#icon-instagram"></use></svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="X">
+                        <svg class="social-icon"><use href="assets/img/icons.svg#icon-x"></use></svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>

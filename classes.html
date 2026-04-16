@@ -1,34 +1,91 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>LTW GYM</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <header>
-            <nav>
-            <h2>LTW GYM</h2>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aulas - O Teu Ginásio</title>
+    <link rel="stylesheet" href="css/classes.css">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
 
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./trainers.html">Trainers</a></li>
-                <li><a href="./classes.html">Classes</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">LTW GYM</div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="trainers.html" class="nav-link">Trainers</a></li>
+                <li><a href="classes.html" class="nav-link active">Classes</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
 
-            <div>
-                <a href="#">Login</a>
-                <a href="#">Search</a>
+            <div class="nav-actions">
+                <button class="icon-btn" aria-label="Search">
+                    <span class="emoji-icon">🔍</span>
+                </button>
+                
+                <a href="login.html" class="nav-link login-link">
+                    <span class="emoji-icon">👤</span>
+                    <span>LOG IN</span>
+                </a>
             </div>
-        </header>
-    </body>
+        </nav>
+    </header>
+
+    <nav class="class-filters">
+        <button class="filter-btn active">Todas</button>
+        <button class="filter-btn">Cardio</button>
+        <button class="filter-btn">Força</button>
+        <button class="filter-btn">Corpo & Mente</button>
+    </nav>
+
+    <section class="classes-container">
+        
+        <div class="class-card">
+            <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop');">
+                <span class="class-badge">Força</span>
+            </div>
+            <div class="class-content">
+                <h3>IronPump</h3>
+                <p>Treino com barras e pesos para tonificar e construir massa muscular ao som das melhores batidas.</p>
+                <div class="class-details">
+                    <span>⏱️ 45 Min</span>
+                    <span>🔥 Alta Intensidade</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="class-card">
+            <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=600&auto=format&fit=crop');">
+                <span class="class-badge">Corpo & Mente</span>
+            </div>
+            <div class="class-content">
+                <h3>ZenFlow Yoga</h3>
+                <p>Encontra o teu equilíbrio. Melhora a flexibilidade, postura e reduz o stress com os nossos mestres.</p>
+                <div class="class-details">
+                    <span>⏱️ 60 Min</span>
+                    <span>🧘 Baixa Intensidade</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="class-card">
+            <div class="class-image" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop');">
+                <span class="class-badge">Cardio</span>
+            </div>
+            <div class="class-content">
+                <h3>Velocity Spin</h3>
+                <p>Pedala até ao limite nesta aula de ciclismo indoor que vai derreter calorias e testar a tua resistência.</p>
+                <div class="class-details">
+                    <span>⏱️ 50 Min</span>
+                    <span>🔥 Alta Intensidade</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
 </html>
