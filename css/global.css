@@ -1,48 +1,65 @@
-/* css/global.css */
+/* ==========================================================================
+   1. VARIABLES & ROOT
+   ========================================================================== */
 
 :root {
     --gold: #D4AF37;
+    --gold-hover: #b8952e;
     --dark-bg: #121212;
-    --footer-bg: #0a0a0a;
-    --card-bg: #ffffff;
+    --footer-bg: rgba(0, 0, 0, 0.9);
     --text-light: #ffffff;
-    --text-muted: #dfdfdf;
-    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --text-muted: #888888; /* Slightly darker for better hierarchy */
+    
+    --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ==========================================================================
+   2. GLOBAL RESETS
+   ========================================================================== */
 
 * {
     box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
     margin: 0;
+    padding: 0;
 }
 
 body {
     background-color: var(--dark-bg);
-    /* Ensure the path to your background image is correct relative to the CSS folder */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../assets/img/pexels-tima-miroshnichenko-6388373.jpg') no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                url('../assets/img/pexels-tima-miroshnichenko-6388373.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed; 
     color: var(--text-light);
     font-family: var(--font-main);
-    line-height: 1.6;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
+
+/* ==========================================================================
+   3. UTILITY CLASSES
+   ========================================================================== */
+
+.u-lift {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: transform var(--transition), color var(--transition);
+}
+
+.u-lift:hover {
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   4. NAVIGATION
+   ========================================================================== */
 
 header {
-    padding: 1.5rem 5%;
-    flex-shrink: 0;
+    padding: 1.5rem 5%; 
 }
 
-main {
-    flex: 1 0 auto;
-}
-
-/* --- NAVIGATION --- */
 nav {
     display: flex;
     justify-content: space-between;
@@ -51,38 +68,29 @@ nav {
 
 .logo {
     color: var(--gold);
-    margin: 0;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1.5rem;
-    font-weight: 800;
-    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+    font-weight: 900;
 }
 
-nav ul {
+.nav-links {
     list-style: none;
     display: flex;
     gap: 2rem;
-    margin: 0;
-    padding: 0;
 }
 
 .nav-link {
-    text-decoration: none;
     color: var(--text-light);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    transition: color 0.3s ease;
-    position: relative;
-    padding: 5px 0;
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    position: relative; /* Needed for active bar positioning */
+    padding-bottom: 4px; /* Space between text and gold bar */
 }
 
-.nav-link:hover {
-    color: var(--gold);
-}
-
-.nav-link.active {
+.nav-link:hover, .nav-link.active {
     color: var(--gold);
 }
 
@@ -96,110 +104,128 @@ nav ul {
     background-color: var(--gold);
 }
 
-/* --- HEADER ACTIONS (Emojis) --- */
 .nav-actions {
     display: flex;
     gap: 1.5rem;
     align-items: center;
 }
 
-/* Fixes the "Gray Box" on emoji buttons */
+/* ==========================================================================
+   5. ICON & BUTTON SYSTEM
+   ========================================================================== */
+
+/* Shared base */
+.nav-icon, 
+.social-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    transition: color var(--transition), stroke var(--transition);
+}
+
+/* Search and Login Icons (Stroke-based) */
+.nav-icon {
+    fill: none;
+    stroke: currentColor; /* Inherits color from parent hover state */
+    stroke-width: 2.5px;
+}
+
+/* Social Icons (Fill-based) */
+.social-icon {
+    fill: currentColor;
+    color: var(--text-light);
+}
+
+/* Search Button Wrapper */
 .icon-btn {
     background: transparent;
     border: none;
-    padding: 0;
-    margin: 0;
     cursor: pointer;
-    font-size: 1.2rem;
-    color: inherit;
+    color: var(--text-light);
+    padding: 0;
     display: flex;
     align-items: center;
-    transition: transform 0.2s ease;
-    line-height: 1;
+    transition: color var(--transition), transform var(--transition);
 }
 
 .icon-btn:hover {
-    transform: scale(1.2);
+    color: var(--gold);
 }
 
-.login-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
+/* Standard Buttons */
+.btn {
+    padding: 0.9rem 2.2rem;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all var(--transition);
+}
+
+.btn--gold {
+    background: var(--gold);
+    color: #000;
+}
+
+.btn--gold:hover {
+    background: var(--gold-hover);
+}
+
+.btn--outline {
+    border: 1.5px solid var(--text-light);
     color: var(--text-light);
-    font-size: 0.85rem;
-    font-weight: 600;
 }
 
-/* --- FOOTER & SVG ICONS --- */
+.btn--outline:hover {
+    background-color: var(--text-light);
+    color: #000;
+}
+
+/* ==========================================================================
+   6. FOOTER 
+   ========================================================================== */
+
 footer {
-    flex-shrink: 0;
-    padding: 2rem 5%;
-    background-color: rgba(0, 0, 0, 0.8);
-    margin-top: auto; /* Pushes footer to bottom */
+    padding: 1.2rem 5%; 
+    background-color: var(--footer-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer-content {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem; 
 }
 
 .footer-content p {
     margin: 0;
-    font-weight: bold;
-    font-size: 0.8rem;
-    color: var(--text-light);
+    font-weight: 600;
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
 }
 
 .gold-line {
-    width: 40px;
-    height: 2px;
+    width: 20px;
+    height: 1px;
     background-color: var(--gold);
 }
 
 .footer-content ul {
     list-style: none;
     display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
+    gap: 1rem;
 }
 
-/* This restores your SVG visibility */
-.footer-content svg {
-    width: 20px;
-    height: 20px;
-    fill: var(--text-light); 
-    transition: all 0.3s ease;
-    display: block;
-}
+.u-lift:hover .social-icon { color: var(--gold); }
 
-.footer-content a:hover svg {
-    fill: var(--gold);      
-    transform: translateY(-3px); 
-}
+/* ==========================================================================
+   7. MAIN
+   ========================================================================== */
 
-/* --- BUTTONS --- */
-.btn {
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.85rem;
-    border-radius: 4px;
-    display: inline-block;
-    transition: transform 0.2s, opacity 0.2s;
-    text-align: center;
-}
-
-.btn-gold {
-    background-color: var(--gold);
-    color: #000;
-}
-
-.btn-outline {
-    border: 2px solid #fff;
-    color: #fff;
-}
+main { flex: 1; }

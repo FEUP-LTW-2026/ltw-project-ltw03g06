@@ -1,55 +1,66 @@
 /* css/trainers.css */
+
 .trainers-page {
     padding: 4rem 5%;
+    flex: 1; /* Ensures footer stays at bottom */
 }
 
 .trainers-page h1 {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
     margin-bottom: 3rem;
+    text-align: center;
 }
 
 .trainer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .trainer-card {
-    background: var(--card-bg);
-    color: #222;
-    padding: 25px;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05); /* Dark premium card background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 4px;
     display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    gap: 25px;
+    align-items: center;
+    transition: border-color var(--transition), background var(--transition);
+}
+
+/* Card hover effect matching your premium feel */
+.trainer-card:hover {
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .img-box {
-    width: 100px;
-    height: 100px;
-    background: #e0e0e0;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
     flex-shrink: 0;
-    border-radius: 4px;
+    border-radius: 50%; /* Circular images look cleaner for profiles */
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.img-box::after {
-    content: '👤';
-    font-size: 2rem;
-    opacity: 0.3;
+    color: var(--gold);
 }
 
 .info h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.25rem;
-    color: #000;
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .info p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
 }
