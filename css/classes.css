@@ -7,6 +7,21 @@ body {
     color: #333;
 }
 
+.classes-page {
+    padding: 4rem 5%;
+    flex: 1;
+}
+
+.classes-page h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: white;
+}
+
 /* Secção Hero */
 .hero-section {
     text-align: center;
@@ -54,30 +69,6 @@ body {
     padding: 20px 5%;
     max-width: 1200px;
     margin: 0 auto 60px auto;
-}
-
-@media (max-width: 980px) {
-    .classes-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
-    .class-filters {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        padding: 20px 10px;
-    }
-
-    .filter-btn {
-        flex: 1 1 140px;
-        max-width: 220px;
-    }
-
-    .classes-container {
-        padding: 20px 2%;
-    }
 }
 
 /* Cartões */
@@ -149,55 +140,9 @@ body {
     flex-wrap: wrap;
 }
 
-@media (max-width: 700px) {
-    .class-card {
-        flex-direction: column;
-    }
-
-    .class-image {
-        height: 180px;
-    }
-
-    .class-content {
-        padding: 20px;
-    }
-}
-
-@media (max-width: 600px) {
-    .class-details {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .class-image {
-        height: 160px;
-    }
-
-    .class-content h3 {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 420px) {
-    .class-filters {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 16px 8px;
-    }
-
-    .filter-btn {
-        width: 100%;
-        max-width: unset;
-    }
-
-    .class-content {
-        padding: 18px;
-    }
-
-    .class-details {
-        font-size: 0.85rem;
-    }
-}
+/* =========================================================
+   MEDIA QUERIES - RESPONSIVIDADE
+   ========================================================= */
 
 @media (max-width: 980px) {
     .classes-container {
@@ -223,14 +168,9 @@ body {
     }
 }
 
-@media (max-width: 600px) {
-    .classes-container {
-        gap: 22px;
-    }
-
+@media (max-width: 700px) {
     .class-card {
-        margin: 0 auto;
-        max-width: 100%;
+        flex-direction: column;
     }
 
     .class-image {
@@ -238,22 +178,26 @@ body {
     }
 
     .class-content {
-        padding: 18px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    /* Força o contentor a ter apenas uma coluna */
+    .classes-container {
+        grid-template-columns: 1fr; 
+        padding: 20px 5%; /* Ajusta o espaçamento lateral */
     }
 
-    .class-content h3 {
-        font-size: 1.25rem;
-    }
-
-    .class-content p {
-        font-size: 0.92rem;
-        margin-bottom: 16px;
-    }
-
-    .class-details {
+    /* Garante que o cartão se comporta como uma coluna interna (imagem em cima, texto em baixo) */
+    .class-card {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        max-width: 450px; /* Opcional: evita que o cartão fique demasiado largo em tablets */
+        margin: 0 auto;  /* Centra o cartão se ele tiver largura máxima */
+    }
+
+    .class-image {
+        height: 220px; /* Dá um pouco mais de destaque à imagem quando está sozinha */
     }
 }
 
@@ -270,7 +214,7 @@ body {
     }
 
     .class-image {
-        height: 160px;
+        height: 160px; /* Encolhe um pouco a imagem para telemóveis muito pequenos */
     }
 
     .class-content {
