@@ -313,15 +313,15 @@ nav.mobile-open .menu-toggle span::after {
 
 @media (max-width: 700px) {
     nav {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;         
+        flex-wrap: wrap;            
+        justify-content: space-between;
+        align-items: center;
     }
 
     .menu-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: auto;
+        display: inline-flex;       
+        margin-left: 0;
     }
 
     .nav-links,
