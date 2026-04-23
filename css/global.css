@@ -327,17 +327,18 @@ nav.mobile-open .menu-toggle span::after {
     .nav-links,
     .nav-actions {
         display: none;
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        width: 100%;
+        width: 100%;                
+        order: 3;
     }
 
     nav.mobile-open .nav-links,
     nav.mobile-open .nav-actions {
         display: flex;
+        flex-direction: column;   
+        align-items: center;
         opacity: 1;
         max-height: 500px;
+        margin-top: 1rem;
     }
 
     .nav-links {
