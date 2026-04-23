@@ -91,3 +91,14 @@
     border: none;
     font-family: var(--font-main);
 }
+
+.signup-container {
+    max-width: min(550px, calc(100% - 2rem));
+}
+
+@media (max-width: 650px) {
+    .signup-container {
+        padding: 2rem 1.25rem;
+        margin: 2rem 1rem;
+    }
+}

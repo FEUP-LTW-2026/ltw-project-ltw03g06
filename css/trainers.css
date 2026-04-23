@@ -79,3 +79,20 @@
     line-height: 1.6;
     color: var(--text-muted);
 }
+
+@media (max-width: 700px) {
+    .trainer-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .trainer-card .info {
+        width: 100%;
+    }
+
+    .img-box {
+        width: 115px;
+        height: 115px;
+    }
+}
