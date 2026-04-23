@@ -1,11 +1,13 @@
 /* css/signup.css */
 
 .signup-container {
-    max-width: 550px;
+    width: 95%; /* Responsive width */
+    max-width: 650px; /* Matched to profile-card for consistency */
     margin: 4rem auto;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.05); /* Matching trainer cards */
+    padding: 3.5rem;
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     border-radius: 4px;
 }
 
@@ -28,6 +30,7 @@
 
 .form-group {
     margin-bottom: 1.5rem;
+    text-align: left; /* Ensures all inputs and labels align left */
 }
 
 .form-group label {
@@ -37,15 +40,14 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--gold); /* Gold labels for premium feel */
+    color: var(--gold);
 }
 
-/* Dark themed inputs */
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 0.9rem;
-    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 2px;
     font-size: 0.9rem;
@@ -60,45 +62,65 @@
     border-color: var(--gold);
 }
 
+/* Checkbox Section - Fixed Alignment and Restored Yellow Links */
 .checkbox-group {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Aligns box to the first line of text */
+    justify-content: flex-start; /* Forces group to the left */
     gap: 0.8rem;
     margin: 2rem 0;
 }
 
 .checkbox-group input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px; /* Centers box with the first line of text */
     accent-color: var(--gold);
+    flex-shrink: 0; /* Prevents box from squishing */
+    cursor: pointer;
 }
 
 .checkbox-group label {
-    margin-bottom: 0;
     text-transform: none;
-    letter-spacing: 0;
+    font-size: 0.85rem;
     color: var(--text-muted);
+    line-height: 1.4;
+    cursor: pointer;
 }
 
+/* Terms and Conditions highlighted link */
 .checkbox-group label a {
     color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity var(--transition);
+}
+
+.checkbox-group label a:hover {
     text-decoration: underline;
+    opacity: 0.8;
 }
 
-/* Submit button uses global .btn--gold styles */
-.btn-submit {
+/* Full width button styling */
+.full-width-btn {
     width: 100%;
-    border: none;
-    font-family: var(--font-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-.signup-container {
-    max-width: min(550px, calc(100% - 2rem));
-}
-
-@media (max-width: 650px) {
+/* Mobile Responsiveness - Prevents "Growing" logic */
+@media (max-width: 700px) {
     .signup-container {
-        padding: 2rem 1.25rem;
-        margin: 2rem 1rem;
+        padding: 2.5rem 1.5rem;
+        margin: 2rem auto;
+        /* Width stays at 95% from the top definition, ensuring it never grows wider than desktop */
+    }
+    
+    .signup-form h1 {
+        font-size: 1.8rem;
     }
 }
