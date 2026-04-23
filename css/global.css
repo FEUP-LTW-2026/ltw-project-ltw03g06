@@ -10,7 +10,7 @@
     --text-light: #ffffff;
     --text-muted: #888888; /* Slightly darker for better hierarchy */
     
-    --font-main: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    --font-main: 'Noto Sans', 'Inter', 'Segoe UI', sans-serif;
     --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
