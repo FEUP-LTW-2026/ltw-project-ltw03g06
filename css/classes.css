@@ -1,61 +1,40 @@
 /* css/classes.css */
 
-/* 1. Page Header Style - Matches index/signup headings */
-.classes-page h1 {
+/* 1. Page Header Section - Restructured for better spacing */
+.classes-header {
+    text-align: center;
+    padding: 5rem 1rem 3rem; /* Prevents text from starting too high */
+}
+
+.classes-header h1 {
     font-size: clamp(2.5rem, 7vw, 4rem);
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -1px;
-    margin-bottom: 3rem;
-    text-align: center;
+    letter-spacing: -1.5px;
+    margin-bottom: 0.5rem;
     color: var(--text-light);
 }
 
-/* 2. Filters - Uses global gold/outline button logic */
-.class-filters {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 30px 20px;
-    margin-bottom: 2rem;
+.classes-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
 }
 
-.filter-btn {
-    padding: 10px 24px;
-    border: 1.5px solid var(--text-light);
-    background: transparent;
-    color: var(--text-light);
-    font-weight: 700;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 2px; /* Square edges match global theme */
-    cursor: pointer;
-    transition: all var(--transition);
-}
-
-.filter-btn:hover, 
-.filter-btn.active {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: #000;
-}
-
-/* 3. Grid Container */
+/* 2. Grid Container */
 .classes-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     padding: 20px 5%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto 60px auto;
 }
 
-/* 4. Class Cards - Styled to match trainer cards and signup container */
+/* 3. Class Cards & B&W Hover Effect */
 .class-card {
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.05); /* Matches signup.css container */
+    background: rgba(255, 255, 255, 0.05); /* Matches signup/profile containers */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     backdrop-filter: blur(10px);
@@ -64,74 +43,91 @@
 }
 
 .class-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     border-color: var(--gold);
 }
 
 .class-image {
-    height: 220px;
+    height: 240px;
     background-size: cover;
     background-position: center;
-    position: relative;
+    filter: grayscale(100%); /* Starts black and white */
+    transition: filter var(--transition), transform var(--transition);
 }
 
-.class-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--gold); /* Gold badge for consistency */
-    color: #000;
-    padding: 6px 14px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
+.class-card:hover .class-image {
+    filter: grayscale(0%); /* Snaps to color on hover */
 }
 
 .class-content {
-    padding: 24px;
+    padding: 1.8rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .class-content h3 {
-    margin: 0 0 12px 0;
     font-size: 1.4rem;
     color: var(--text-light);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
     font-weight: 900;
 }
 
 .class-content p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
+    font-size: 0.85rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
 }
 
-.class-details {
-    display: flex;
-    justify-content: space-between;
+/* 4. Tag Styling - Sharp, Minimalist, and Technical */
+.class-tags {
+    margin-top: auto; /* Pushes tags to the bottom of the card */
+    padding-top: 1.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 18px;
-    font-size: 0.75rem;
-    color: var(--gold); /* Gold text for key info */
-    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.class-tags span {
+    font-size: 0.6rem; /* Small and sharp */
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px 8px;
+    border-radius: 1px; /* Sharp corners to match trainers page */
+    transition: all var(--transition);
+}
+
+/* Hover state: Button-like spans light up with gold tint */
+.class-card:hover .class-tags span {
+    color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
 }
 
 /* 5. Responsive Adjustments */
+@media (max-width: 1024px) {
+    .classes-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 700px) {
     .classes-container {
         grid-template-columns: 1fr;
-        padding: 20px 1.5rem;
+        padding: 0 1.5rem;
     }
     
-    .class-filters {
-        flex-wrap: wrap;
-        gap: 10px;
+    .classes-header {
+        padding-top: 3rem;
     }
 
-    .filter-btn {
-        flex: 1 1 140px;
-        font-size: 0.6rem;
+    .class-image {
+        height: 200px;
     }
 }
