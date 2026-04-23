@@ -2,98 +2,118 @@
 
 .trainers-page {
     padding: 4rem 5%;
-    flex: 1; /* Pushes footer to bottom */
-}
-
-.trainers-page h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-    margin-bottom: 3rem;
-    text-align: center;
-}
-
-/* Trainer Cards */
-.trainer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
-.trainer-card {
-    background: rgba(255, 255, 255, 0.05); /* Premium dark card tint */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 4px;
-    display: flex;
+.trainers-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.trainers-header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
+    margin-bottom: 0.5rem;
+}
+
+.trainers-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.trainer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
     gap: 25px;
-    align-items: center;
-    transition: border-color var(--transition), background var(--transition);
+    margin-bottom: 60px;
+}
+
+.trainer-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform var(--transition), border-color var(--transition);
 }
 
 .trainer-card:hover {
+    transform: translateY(-8px);
     border-color: var(--gold);
-    background: rgba(255, 255, 255, 0.08);
 }
 
-/* Squircle Image Container */
-.img-box {
-    width: 90px;
-    height: 90px;
-    background: rgba(0, 0, 0, 0.3);
-    flex-shrink: 0;
-    border-radius: 22px; /* The Squircle shape */
-    overflow: hidden; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.trainer-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.trainer-image {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
     filter: grayscale(100%);
-    transition: filter var(--transition), transform var(--transition);
+    transition: filter var(--transition);
 }
 
-.trainer-card:hover .trainer-img {
+.trainer-card:hover .trainer-image {
     filter: grayscale(0%);
-    transform: scale(1.1);
 }
 
-/* Text Hierarchy */
-.info h3 {
-    margin: 0 0 8px 0;
-    font-size: 1.1rem;
+.trainer-info {
+    padding: 1.8rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.trainer-info h3 {
+    font-size: 1.3rem;
     color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-bottom: 0.8rem;
 }
 
-.info p {
+.trainer-info p {
     font-size: 0.85rem;
     line-height: 1.6;
     color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* Organized Class List instead of messy badges */
+.trainer-classes {
+    margin-top: auto; /* Pushes to bottom */
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.trainer-classes span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: color var(--transition), background var(--transition);
+}
+
+.trainer-card:hover .trainer-classes span {
+    color: var(--gold);
+    background: rgba(212, 175, 55, 0.1); /* Subtle gold tint on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .trainer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 700px) {
-    .trainer-card {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
-    .trainer-card .info {
-        width: 100%;
-    }
-
-    .img-box {
-        width: 115px;
-        height: 115px;
-    }
-}
+    .trainer-grid { grid-template-columns: 1fr; }
+    .trainer-image { height: 280px; }
+}   
