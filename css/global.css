@@ -1,22 +1,14 @@
-/* ==========================================================================
-   1. VARIABLES & ROOT
-   ========================================================================== */
-
 :root {
     --gold: #D4AF37;
     --gold-hover: #b8952e;
     --dark-bg: #121212;
     --footer-bg: rgba(0, 0, 0, 0.9);
     --text-light: #ffffff;
-    --text-muted: #888888; /* Slightly darker for better hierarchy */
+    --text-muted: #888888; 
     
     --font-main: 'Noto Sans', 'Inter', 'Segoe UI', sans-serif;
     --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* ==========================================================================
-   2. GLOBAL RESETS
-   ========================================================================== */
 
 * {
     box-sizing: border-box;
@@ -36,10 +28,6 @@ body {
     min-height: 100vh;
 }
 
-/* ==========================================================================
-   3. UTILITY CLASSES
-   ========================================================================== */
-
 .u-lift {
     display: inline-flex;
     align-items: center;
@@ -51,10 +39,6 @@ body {
 .u-lift:hover {
     transform: translateY(-3px);
 }
-
-/* ==========================================================================
-   4. NAVIGATION
-   ========================================================================== */
 
 header {
     padding: 1.5rem 5%; 
@@ -87,8 +71,8 @@ nav {
     text-transform: uppercase;
     font-size: 0.7rem;
     letter-spacing: 1.2px;
-    position: relative; /* Needed for active bar positioning */
-    padding-bottom: 4px; /* Space between text and gold bar */
+    position: relative; 
+    padding-bottom: 4px; 
 }
 
 .nav-link:hover, .nav-link.active {
@@ -111,11 +95,6 @@ nav {
     align-items: center;
 }
 
-/* ==========================================================================
-   5. ICON & BUTTON SYSTEM
-   ========================================================================== */
-
-/* Shared base */
 .nav-icon, 
 .social-icon {
     width: 16px;
@@ -124,20 +103,17 @@ nav {
     transition: color var(--transition), stroke var(--transition);
 }
 
-/* Search and Login Icons (Stroke-based) */
 .nav-icon {
     fill: none;
-    stroke: currentColor; /* Inherits color from parent hover state */
+    stroke: currentColor; 
     stroke-width: 2.5px;
 }
 
-/* Social Icons (Fill-based) */
 .social-icon {
     fill: currentColor;
     color: var(--text-light);
 }
 
-/* Search Button Wrapper */
 .icon-btn {
     background: transparent;
     border: none;
@@ -153,7 +129,6 @@ nav {
     color: var(--gold);
 }
 
-/* Standard Buttons */
 .btn {
     padding: 0.9rem 2.2rem;
     font-weight: 700;
@@ -184,10 +159,6 @@ nav {
     background-color: var(--text-light);
     color: #000;
 }
-
-/* ==========================================================================
-   6. FOOTER 
-   ========================================================================== */
 
 footer {
     padding: 1.2rem 5%; 
@@ -225,15 +196,7 @@ footer {
 
 .u-lift:hover .social-icon { color: var(--gold); }
 
-/* ==========================================================================
-   7. MAIN
-   ========================================================================== */
-
 main { flex: 1; }
-
-/* ==========================================================================
-   8. RESPONSIVE IMPROVEMENTS
-   ========================================================================== */
 
 nav {
     flex-wrap: wrap;

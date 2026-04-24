@@ -1,8 +1,7 @@
-/* css/signup.css */
 
 .signup-container {
-    width: 95%; /* Responsive width */
-    max-width: 650px; /* Matched to profile-card for consistency */
+    width: 95%; 
+    max-width: 650px; 
     margin: 4rem auto;
     padding: 3.5rem;
     background: rgba(255, 255, 255, 0.05);
@@ -30,7 +29,7 @@
 
 .form-group {
     margin-bottom: 1.5rem;
-    text-align: left; /* Ensures all inputs and labels align left */
+    text-align: left; 
 }
 
 .form-group label {
@@ -62,11 +61,10 @@
     border-color: var(--gold);
 }
 
-/* Checkbox Section - Fixed Alignment and Restored Yellow Links */
 .checkbox-group {
     display: flex;
-    align-items: flex-start; /* Aligns box to the first line of text */
-    justify-content: flex-start; /* Forces group to the left */
+    align-items: flex-start; 
+    justify-content: flex-start; 
     gap: 0.8rem;
     margin: 2rem 0;
 }
@@ -74,9 +72,9 @@
 .checkbox-group input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    margin-top: 2px; /* Centers box with the first line of text */
+    margin-top: 2px; 
     accent-color: var(--gold);
-    flex-shrink: 0; /* Prevents box from squishing */
+    flex-shrink: 0; 
     cursor: pointer;
 }
 
@@ -88,7 +86,6 @@
     cursor: pointer;
 }
 
-/* Terms and Conditions highlighted link */
 .checkbox-group label a {
     color: var(--gold);
     text-decoration: none;
@@ -101,7 +98,6 @@
     opacity: 0.8;
 }
 
-/* Full width button styling */
 .full-width-btn {
     width: 100%;
     display: flex;
@@ -112,12 +108,10 @@
     text-transform: uppercase;
 }
 
-/* Mobile Responsiveness - Prevents "Growing" logic */
 @media (max-width: 700px) {
     .signup-container {
         padding: 2.5rem 1.5rem;
         margin: 2rem auto;
-        /* Width stays at 95% from the top definition, ensuring it never grows wider than desktop */
     }
     
     .signup-form h1 {

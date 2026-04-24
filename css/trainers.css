@@ -1,4 +1,3 @@
-/* css/trainers.css */
 
 .trainers-page {
     padding: 4rem 5%;
@@ -66,7 +65,7 @@
     flex-direction: column;
 }
 
-.trainer-info h3 {
+.trainer-info h2 {
     font-size: 1.3rem;
     color: var(--text-light);
     text-transform: uppercase;
@@ -81,9 +80,8 @@
     margin-bottom: 1.5rem;
 }
 
-/* Organized Class List instead of messy badges */
 .trainer-classes {
-    margin-top: auto; /* Pushes to bottom */
+    margin-top: auto; 
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
@@ -105,10 +103,9 @@
 
 .trainer-card:hover .trainer-classes span {
     color: var(--gold);
-    background: rgba(212, 175, 55, 0.1); /* Subtle gold tint on hover */
+    background: rgba(212, 175, 55, 0.1); 
 }
 
-/* Responsive Adjustments */
 @media (max-width: 1024px) {
     .trainer-grid { grid-template-columns: repeat(2, 1fr); }
 }

@@ -1,9 +1,7 @@
-/* css/classes.css */
 
-/* 1. Page Header Section - Restructured for better spacing */
 .classes-header {
     text-align: center;
-    padding: 5rem 1rem 3rem; /* Prevents text from starting too high */
+    padding: 4rem 1rem 3rem; 
 }
 
 .classes-header h1 {
@@ -20,7 +18,6 @@
     font-size: 1.1rem;
 }
 
-/* 2. Grid Container */
 .classes-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -30,11 +27,10 @@
     margin: 0 auto 60px auto;
 }
 
-/* 3. Class Cards & B&W Hover Effect */
 .class-card {
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.05); /* Matches signup/profile containers */
+    background: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     backdrop-filter: blur(10px);
@@ -51,12 +47,12 @@
     height: 240px;
     background-size: cover;
     background-position: center;
-    filter: grayscale(100%); /* Starts black and white */
+    filter: grayscale(100%); 
     transition: filter var(--transition), transform var(--transition);
 }
 
 .class-card:hover .class-image {
-    filter: grayscale(0%); /* Snaps to color on hover */
+    filter: grayscale(0%); 
 }
 
 .class-content {
@@ -66,7 +62,7 @@
     flex-direction: column;
 }
 
-.class-content h3 {
+.class-content h2 {
     font-size: 1.4rem;
     color: var(--text-light);
     text-transform: uppercase;
@@ -82,9 +78,8 @@
     margin-bottom: 1.5rem;
 }
 
-/* 4. Tag Styling - Sharp, Minimalist, and Technical */
 .class-tags {
-    margin-top: auto; /* Pushes tags to the bottom of the card */
+    margin-top: auto; 
     padding-top: 1.2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
@@ -93,24 +88,22 @@
 }
 
 .class-tags span {
-    font-size: 0.6rem; /* Small and sharp */
+    font-size: 0.6rem; 
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1.2px;
     color: var(--text-muted);
     background: rgba(255, 255, 255, 0.03);
     padding: 4px 8px;
-    border-radius: 1px; /* Sharp corners to match trainers page */
+    border-radius: 1px; 
     transition: all var(--transition);
 }
 
-/* Hover state: Button-like spans light up with gold tint */
 .class-card:hover .class-tags span {
     color: var(--gold);
     background: rgba(212, 175, 55, 0.1);
 }
 
-/* 5. Responsive Adjustments */
 @media (max-width: 1024px) {
     .classes-container {
         grid-template-columns: repeat(2, 1fr);
