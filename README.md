@@ -6,6 +6,12 @@
 - Classes page.
 Run using php -S localhost:9000
 
+## Mockup
+(https://www.figma.com/design/hI5sROxEz4giQGAlM8Ryiz/GYM-MOCKUP?node-id=0-1&t=E1JRo00MHPRfN3h8-1)
+
+## UML Domain Model
+<img src="UML.png" alt="UML Domain Model" width="200" align="center">
+
 ## Features
 
 **All users:**
