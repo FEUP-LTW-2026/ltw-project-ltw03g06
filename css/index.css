@@ -23,7 +23,7 @@
 .hero-content p {
     font-size: 1.1rem;
     margin-bottom: 3rem;
-    color: var(--text-muted);
+    color: white;
     max-width: 550px;
     margin-left: auto;
     margin-right: auto;
