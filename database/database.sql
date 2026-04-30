@@ -39,9 +39,18 @@ CREATE TABLE enrollments (
 -- mas no PHP você deve usar password_hash() e password_verify().
 
 -- Credenciais do README
+-- Inserindo Administrador e Membro de teste
 INSERT INTO users (name, email, password, role) VALUES ('Admin', 'admin', 'p4s5w0rd', 'admin');
 INSERT INTO users (name, email, password, role) VALUES ('Member', 'member', '1234', 'member');
-INSERT INTO users (name, email, password, role, bio, image_url) VALUES ('John Doe', 'trainer', '1234', 'trainer', 'Expert in functional strength...', 'assets/img/george-dagerotip-mYaf3lj2Vs8-unsplash.jpg');
+
+INSERT INTO users (name, email, password, role, bio, image_url) 
+VALUES ('John Doe', 'trainer', '1234', 'trainer', 'Expert in functional strength training and personalized nutrition coaching to reach peak performance.', 'assets/img/george-dagerotip-mYaf3lj2Vs8-unsplash.jpg');
+
+INSERT INTO users (name, email, password, role, bio, image_url) 
+VALUES ('John Pork', 'pork@ltwgym.com', '1234', 'trainer', 'Master of Olympic lifting techniques and high-intensity endurance protocols.', 'assets/img/mediamodifier-m6Hw3FybWPA-unsplash.jpg');
+
+INSERT INTO users (name, email, password, role, bio, image_url) 
+VALUES ('John Cannons', 'cannons@ltwgym.com', '1234', 'trainer', 'Specializes in hypertrophy, contest preparation, and aesthetic muscle development.', 'assets/img/samuel-girven-Ppua0I4VjqE-unsplash.jpg');
 
 -- Inserindo as Aulas do seu HTML
 INSERT INTO classes (title, description, duration, intensity, category, image_url, trainer_id) VALUES 
