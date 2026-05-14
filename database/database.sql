@@ -1,5 +1,9 @@
 PRAGMA foreign_keys = ON;
 
+DROP TABLE IF EXISTS enrollments;
+DROP TABLE IF EXISTS classes;
+DROP TABLE IF EXISTS users;
+
 -- Tabela de Usuários (Membros, Treinadores e Admins)
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
