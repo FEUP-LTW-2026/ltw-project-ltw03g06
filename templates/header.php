@@ -8,6 +8,8 @@
     <?php if (isset($pageCss)): ?>
         <link rel="stylesheet" href="css/<?= htmlspecialchars($pageCss) ?>">
     <?php endif; ?>
+    <script src="js/nav.js" defer></script>
+
 </head>
 <body>
     <header>
