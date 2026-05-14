@@ -9,6 +9,5 @@
             </ul>
         </div>
     </footer>
-    <script src="js/nav.js" defer></script>
 </body>
 </html>
