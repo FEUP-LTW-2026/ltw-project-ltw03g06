@@ -2,12 +2,11 @@
     color: white;
 }
 
-/* HERO */
-.about-hero {
-    height: 60vh;
+/* HERO (consistente com outras páginas) */
+.page-hero {
+    height: 40vh;
     background: url("../assets/img/mediamodifier-m6Hw3FybWPA-unsplash.jpg") center/cover;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -16,21 +15,15 @@
     background-blend-mode: darken;
 }
 
-.about-hero h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+.page-hero h1 {
+    font-size: 2.5rem;
 }
 
-.about-hero p {
-    font-size: 1.2rem;
-    opacity: 0.8;
-}
-
-/* GENERAL */
-.container {
+/* CONTAINER */
+.about .container {
     width: 90%;
     max-width: 1100px;
-    margin: auto;
+    margin: 0 auto;
     padding: 60px 0;
     text-align: center;
 }
@@ -72,8 +65,18 @@
     text-align: center;
 }
 
+/* IMAGENS IGUAIS + PRETO/BRANCO */
 .team-card img {
     width: 100%;
+    height: 250px;
+    object-fit: cover;
     border-radius: 10px;
-    margin-bottom: 10px;
+
+    filter: grayscale(100%);
+    transition: 0.3s;
+}
+
+/* HOVER (igual ao resto do site) */
+.team-card:hover img {
+    filter: grayscale(0%);
 }
