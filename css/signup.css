@@ -12,9 +12,6 @@
 
 .signup-form h1 {
     text-align: center;
-    color: var(--text-light);
-    text-transform: uppercase;
-    font-weight: 900;
     letter-spacing: -1px;
     margin-bottom: 0.5rem;
     font-size: 2.2rem;

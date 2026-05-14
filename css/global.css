@@ -6,14 +6,33 @@
     --text-light: #ffffff;
     --text-muted: #888888; 
     
+    --error: #ff4c4c;
+    --success: #4bb543;
+
+    --space-sm: 0.5rem;
+    --space-md: 1.5rem;
+    --space-lg: 3rem;
+    
     --font-main: 'Noto Sans', 'Inter', 'Segoe UI', sans-serif;
     --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --z-nav: 100;
+    --z-modal: 1000;
 }
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+img, svg {
+    max-width: 100%;
+    display: block; 
+}
+
+input, button, textarea, select {
+    font: inherit; 
+    color: inherit;
 }
 
 body {
@@ -255,6 +274,22 @@ nav.mobile-open .menu-toggle span::after {
 .nav-links,
 .nav-actions {
     transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+
+:focus-visible {
+    outline: 2px dashed var(--gold);
+    outline-offset: 4px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-light);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+p {
+    line-height: 1.6; 
 }
 
 @media (max-width: 900px) {
