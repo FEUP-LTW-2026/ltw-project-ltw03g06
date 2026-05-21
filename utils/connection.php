@@ -246,7 +246,7 @@ function bootstrapGymData(PDO $db): void
             'password' => '1234',
             'role' => 'trainer',
             'bio' => 'Functional strength coach focused on clean movement patterns, core stability, and disciplined nutrition.',
-            'image_url' => 'assets/img/george-dagerotip-mYaf3lj2Vs8-unsplash.jpg',
+            'image_url' => 'assets/img/trainers/marcus-reed.jpg',
             'specializations' => 'Functional Strength, Nutrition Coaching',
         ],
         [
@@ -255,7 +255,7 @@ function bootstrapGymData(PDO $db): void
             'password' => '1234',
             'role' => 'trainer',
             'bio' => 'High-energy cycling and conditioning specialist with a focus on endurance and athletic rhythm.',
-            'image_url' => 'assets/img/mediamodifier-m6Hw3FybWPA-unsplash.jpg',
+            'image_url' => 'assets/img/trainers/elena-vega.jpg',
             'specializations' => 'Cycling, Endurance Training',
         ],
         [
@@ -264,7 +264,7 @@ function bootstrapGymData(PDO $db): void
             'password' => '1234',
             'role' => 'trainer',
             'bio' => 'Hypertrophy coach who blends intensity blocks with structured recovery to build size and strength.',
-            'image_url' => 'assets/img/samuel-girven-Ppua0I4VjqE-unsplash.jpg',
+            'image_url' => 'assets/img/trainers/dante-cross.jpg',
             'specializations' => 'Hypertrophy, Contest Preparation, Body Composition',
         ],
         [
@@ -273,7 +273,7 @@ function bootstrapGymData(PDO $db): void
             'password' => '1234',
             'role' => 'trainer',
             'bio' => 'Flow and mobility coach with a calm, technical approach to movement and recovery.',
-            'image_url' => 'assets/img/george-dagerotip-mYaf3lj2Vs8-unsplash.jpg',
+            'image_url' => 'assets/img/trainers/nora-kim.jpg',
             'specializations' => 'Yoga, Mobility, Recovery',
         ],
         [
@@ -282,7 +282,7 @@ function bootstrapGymData(PDO $db): void
             'password' => '1234',
             'role' => 'trainer',
             'bio' => 'Boxing and metabolic conditioning coach bringing sharp timing and explosive cardio work.',
-            'image_url' => 'assets/img/mediamodifier-m6Hw3FybWPA-unsplash.jpg',
+            'image_url' => 'assets/img/trainers/leo-santos.jpg',
             'specializations' => 'Boxing, Conditioning, HIIT',
         ],
         [
@@ -291,7 +291,7 @@ function bootstrapGymData(PDO $db): void
             'password' => '1234',
             'role' => 'trainer',
             'bio' => 'Pilates and recovery-focused coach who keeps classes controlled, precise, and joint-friendly.',
-            'image_url' => 'assets/img/samuel-girven-Ppua0I4VjqE-unsplash.jpg',
+            'image_url' => 'assets/img/trainers/mila-hart.jpg',
             'specializations' => 'Pilates, Recovery, Core Stability',
         ],
     ];
