@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="css/<?= htmlspecialchars($pageCss) ?>">
     <?php endif; ?>
     <script src="js/nav.js" defer></script>
+    <?php if (isset($pageScript)): ?>
+        <script src="js/<?= htmlspecialchars($pageScript) ?>" defer></script>
+    <?php endif; ?>
 
 </head>
 <body>
@@ -23,16 +26,13 @@
             <ul class="nav-links">
                 <li><a href="index.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'index' ? ' active' : '' ?>">Home</a></li>
                 <li><a href="trainers.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'trainers' ? ' active' : '' ?>">Trainers</a></li>
-                <li><a href="classes.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'classes' ? ' active' : '' ?>">Classes</a></li>
+                <li><a href="classes.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'classes' ? ' active' : '' ?>">Schedule</a></li>
+                <li><a href="equipment.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'equipment' ? ' active' : '' ?>">Equipment</a></li>
                 <li><a href="about.html" class="nav-link u-lift">About Us</a></li>
                 <li><a href="contact.html" class="nav-link u-lift">Contact</a></li>
             </ul>
 
             <div class="nav-actions">
-                <button class="icon-btn u-lift" aria-label="Search">
-                    <svg class="nav-icon"><use href="assets/img/icons.svg#icon-search"></use></svg>
-                </button>
-
                 <a href="profile.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'profile' ? ' active' : '' ?>">
                     <svg class="nav-icon"><use href="assets/img/icons.svg#icon-user"></use></svg>
                     <span>PROFILE</span>

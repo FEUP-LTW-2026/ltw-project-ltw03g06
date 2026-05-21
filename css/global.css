@@ -37,14 +37,26 @@ input, button, textarea, select {
 
 body {
     background-color: var(--dark-bg);
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
-                url('../assets/img/pexels-tima-miroshnichenko-6388373.jpg') no-repeat center center fixed;
-    background-size: cover;
     color: var(--text-light);
     font-family: var(--font-main);
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-bottom: 4.75rem;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.78)),
+        url('../assets/img/pexels-tima-miroshnichenko-6388373.jpg') no-repeat center center fixed;
+    background-size: cover;
+    pointer-events: none;
 }
 
 .u-lift {
@@ -158,6 +170,13 @@ nav {
     cursor: pointer;
     border: 2px solid transparent;
     transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
 }
 
 .btn--gold {
@@ -180,8 +199,14 @@ nav {
 }
 
 footer {
-    padding: 1.2rem 5%; 
-    background-color: var(--footer-bg);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-nav);
+    padding: 1rem 5%; 
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(14px);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
