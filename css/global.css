@@ -385,6 +385,15 @@ p {
     transition: fill var(--transition);
 }
 
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 900px) {
     header {
         padding: 1rem 4%;

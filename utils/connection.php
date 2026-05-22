@@ -47,7 +47,7 @@ function upsertUserSeed(PDO $db, array $user): int
 
     $fields = [
         'name' => $user['name'],
-        'password' => $user['password'],
+        'password' => password_hash($user['password'], PASSWORD_DEFAULT), 
         'role' => $user['role'],
         'phone' => $user['phone'] ?? null,
         'birthdate' => $user['birthdate'] ?? null,
@@ -528,7 +528,6 @@ try {
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $db->exec('PRAGMA foreign_keys = ON;');
     bootstrapGymData($db);
-    currentMemberId($db);
 } catch (PDOException $e) {
     die('Erro ao conectar com a base de dados: ' . $e->getMessage());
 }

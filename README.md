@@ -15,9 +15,9 @@ Run using php -S localhost:9000
 ## Features
 
 **All users:**
-- [ ] Register a new account.
-- [ ] Log in and out.
-- [ ] Edit their profile, including name, username, password, and profile photo.
+- [X] Register a new account.
+- [X] Log in and out.
+- [X] Edit their profile, including name, username, password, and profile photo.
 
 **Members:**
 - [x] Browse the schedule of available fitness classes, filtering by type, trainer, day, or time.

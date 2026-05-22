@@ -1,31 +1,48 @@
-/* --- Layout Principal --- */
+.profile-hero {
+    text-align: center;
+    padding: 4rem 5% 2rem;
+}
+
+.hero-label {
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.profile-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.profile-hero p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .profile-page {
-    padding: 3rem 5%;
-    display: flex;
-    justify-content: center;
+    width: 100%;
 }
 
 .profile-container {
-    width: 100%;
-    max-width: 1000px;
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 350px 1fr;
     gap: 2rem;
+    padding: 2rem 5% 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
     align-items: start;
 }
 
-/* --- Cartões Base --- */
-.profile-sidebar, 
-.profile-content {
-    background: var(--footer-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+.profile-card {
+    padding: 2.5rem;
 }
 
-/* --- Barra Lateral (Sidebar) --- */
-.profile-sidebar {
+.member-info {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -34,13 +51,14 @@
 
 .avatar-wrapper {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     margin-bottom: 1.5rem;
     border-radius: 50%;
-    border: 3px solid var(--gold);
+    border: 2px solid var(--gold);
     overflow: hidden;
     cursor: pointer;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
 .profile-avatar {
@@ -50,7 +68,6 @@
     display: block;
 }
 
-/* Efeito Hover na Foto (Upload) */
 .avatar-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -67,85 +84,92 @@
 }
 
 .upload-icon {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     fill: var(--text-light);
 }
 
-.profile-sidebar h2 {
+.member-info h2 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
 .membership-badge {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 2rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
 }
 
 .membership-badge span {
     color: var(--gold);
     font-weight: bold;
+    display: block;
+    font-size: 1.1rem;
+    margin-top: 0.3rem;
 }
 
-/* Botão de Logout Vermelho */
 .btn--danger {
-    border-color: var(--error) !important;
+    border-color: rgba(255, 76, 76, 0.5) !important;
     color: var(--error) !important;
     width: 100%;
     justify-content: center;
+    display: flex;
+    text-decoration: none;
 }
 
 .btn--danger:hover {
     background-color: var(--error) !important;
     color: #fff !important;
+    border-color: var(--error) !important;
 }
 
-/* --- Formulário Principal --- */
-.content-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-}
-
-.content-header h2 {
-    font-size: 1.8rem;
-    margin-bottom: 0.2rem;
-}
-
-.content-header p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
+.form-section-title {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 1px;
 }
 
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-}
-
-.form-section-title {
-    margin: 2rem 0 1rem 0;
-    font-size: 1.2rem;
-    color: var(--gold);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    padding-bottom: 0.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .form-actions {
     margin-top: 2rem;
     display: flex;
     justify-content: flex-end;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Responsividade para telemóveis */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .profile-container {
         grid-template-columns: 1fr;
     }
+    
+    .profile-hero {
+        padding: 3rem 5% 1rem;
+    }
+    
+    .profile-hero h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 600px) {
     .form-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .profile-card {
+        padding: 1.5rem;
     }
 }

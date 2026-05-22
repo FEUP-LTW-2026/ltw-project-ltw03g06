@@ -15,19 +15,19 @@ $error = '';
 $success = '';
 $userId = $_SESSION['user_id'];
 
-// Carregar os dados
 try {
     $stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
     $stmt->execute([$userId]);
     $user = $stmt->fetch();
     if (!$user) {
-        session_destroy(); header('Location: login.php'); exit;
+        session_destroy(); 
+        header('Location: login.php'); 
+        exit;
     }
 } catch (PDOException $e) {
     die("Erro: " . $e->getMessage());
 }
 
-// Lógica de Atualização
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
@@ -50,7 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if (in_array($fileExtension, $allowedExtensions)) {
                     $uploadDir = __DIR__ . '/assets/uploads/';
-                    if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+                    if (!is_dir($uploadDir)) {
+                        mkdir($uploadDir, 0755, true);
+                    }
                     
                     $newFileName = 'profile_' . $userId . '_' . time() . '.' . $fileExtension;
                     if (move_uploaded_file($fileTmpPath, $uploadDir . $newFileName)) {
@@ -74,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_name'] = $name;
                 $success = 'Profile updated successfully!';
                 
-                // Recarregar os dados
                 $stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
                 $stmt->execute([$userId]);
                 $user = $stmt->fetch();
@@ -89,13 +90,20 @@ require_once 'templates/header.php';
 ?>
 
 <main class="profile-page">
+    
+    <header class="profile-hero">
+        <span class="hero-label">Member Dashboard</span>
+        <h1>Account Settings</h1>
+        <p>Manage your personal details, membership status, and security preferences.</p>
+    </header>
+
     <form action="" method="post" enctype="multipart/form-data" class="profile-container">
         
         <input type="file" id="profile_pic" name="profile_pic" accept="image/*" style="display: none;">
 
-        <aside class="profile-sidebar">
+        <aside class="profile-card member-info glass-panel">
             <label for="profile_pic" class="avatar-wrapper">
-                <img src="<?= !empty($user['image_url']) ? htmlspecialchars($user['image_url']) : 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' ?>" 
+                <img src="<?= !empty($user['image_url']) ? htmlspecialchars($user['image_url']) : 'https://ui-avatars.com/api/?name=' . urlencode($user['name']) . '&background=1a1a1a&color=ffffff&size=160' ?>" 
                      alt="Profile" class="profile-avatar">
                 
                 <div class="avatar-overlay">
@@ -106,65 +114,68 @@ require_once 'templates/header.php';
             </label>
             
             <h2><?= htmlspecialchars($user['name']) ?></h2>
-            <p class="membership-badge">Membership: <span><?= htmlspecialchars($user['plan'] ?? 'No Active Plan') ?></span></p>
+            <p class="membership-badge">Active Membership <span><?= htmlspecialchars($user['plan'] ?? 'No Plan') ?></span></p>
 
             <a href="logout.php" class="btn btn--outline btn--danger u-lift">LOG OUT</a>
         </aside>
 
-        <section class="profile-content">
-            <div class="content-header">
-                <h2>Account Settings</h2>
-                <p>Manage your personal details and security.</p>
+        <section class="profile-card member-settings glass-panel">
+            
+            <?php if ($error): ?>
+                <div class="alert alert-error" style="color: var(--error); padding: 1rem; border: 1px solid var(--error); background: rgba(255, 76, 76, 0.1); border-radius: 4px; margin-bottom: 2rem; font-weight: 600; text-align: center;"><?= htmlspecialchars($error) ?></div>
+            <?php endif; ?>
+            
+            <?php if ($success): ?>
+                <div class="alert alert-success" style="color: var(--success); padding: 1rem; border: 1px solid var(--success); background: rgba(75, 181, 67, 0.1); border-radius: 4px; margin-bottom: 2rem; font-weight: 600; text-align: center;"><?= htmlspecialchars($success) ?></div>
+            <?php endif; ?>
+
+            <h3 class="form-section-title">Personal Information</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required value="<?= htmlspecialchars($user['name']) ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required value="<?= htmlspecialchars($user['email']) ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" id="birthdate" name="birthdate" required value="<?= htmlspecialchars($user['birthdate'] ?? '') ?>">
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male" <?= ($user['gender'] === 'male') ? 'selected' : '' ?>>Male</option>
+                        <option value="female" <?= ($user['gender'] === 'female') ? 'selected' : '' ?>>Female</option>
+                        <option value="other" <?= ($user['gender'] === 'other') ? 'selected' : '' ?>>Other</option>
+                    </select>
+                </div>
             </div>
 
-            <?php if ($error): ?>
-                <div class="alert alert-error" style="color: var(--error); margin-bottom: 1.5rem; font-weight: bold;"><?= htmlspecialchars($error) ?></div>
-            <?php endif; ?>
-            <?php if ($success): ?>
-                <div class="alert alert-success" style="color: var(--success); margin-bottom: 1.5rem; font-weight: bold;"><?= htmlspecialchars($success) ?></div>
-            <?php endif; ?>
-
-            <div class="signup-form"> <h3 class="form-section-title">Personal Information</h3>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required value="<?= htmlspecialchars($user['name']) ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required value="<?= htmlspecialchars($user['email']) ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="birthdate">Birthdate</label>
-                        <input type="date" id="birthdate" name="birthdate" required value="<?= htmlspecialchars($user['birthdate'] ?? '') ?>">
-                    </div>
-
-                    <div class="form-group" style="grid-column: 1 / -1;">
-                        <label for="gender">Gender</label>
-                        <select id="gender" name="gender" required>
-                            <option value="male" <?= ($user['gender'] === 'male') ? 'selected' : '' ?>>Male</option>
-                            <option value="female" <?= ($user['gender'] === 'female') ? 'selected' : '' ?>>Female</option>
-                            <option value="other" <?= ($user['gender'] === 'other') ? 'selected' : '' ?>>Other</option>
-                        </select>
-                    </div>
-                </div>
-
-                <h3 class="form-section-title">Security</h3>
-                <div class="form-group">
-                    <label for="new_password">New Password</label>
+            <h3 class="form-section-title">Security & Password</h3>
+            <div class="form-group">
+                <label for="new_password">New Password</label>
+                <div class="password-wrapper">
                     <input type="password" id="new_password" name="new_password" placeholder="Leave blank to keep current password">
+                    <button type="button" id="togglePassword" class="icon-btn toggle-pwd-btn" aria-label="Show password">
+                        <svg viewBox="0 0 24 24" class="eye-icon">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                    </button>
                 </div>
+            </div>
 
-                <div class="form-actions">
-                    <button type="submit" class="btn btn--gold u-lift">Save Changes</button>
-                </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn--gold u-lift">Save Changes</button>
             </div>
         </section>
     </form>
@@ -178,6 +189,16 @@ require_once 'templates/header.php';
             preview.src = src;
         }
     });
+
+    const togglePasswordBtn = document.querySelector('#togglePassword');
+    const passwordInput = document.querySelector('#new_password');
+    if(togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.style.color = type === 'text' ? 'var(--gold)' : 'var(--text-muted)';
+        });
+    }
 </script>
 
 <?php require_once 'templates/footer.php'; ?>
