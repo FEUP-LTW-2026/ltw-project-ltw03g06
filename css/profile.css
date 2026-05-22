@@ -1,107 +1,151 @@
-/* css/profile.css */
-
-.profile-container {
+/* --- Layout Principal --- */
+.profile-page {
+    padding: 3rem 5%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 4rem 1rem;
 }
 
-.profile-card {
+.profile-container {
     width: 100%;
-    max-width: 650px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 3rem;
-    border-radius: 4px;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    align-items: start;
 }
 
-.profile-header {
+/* --- Cartões Base --- */
+.profile-sidebar, 
+.profile-content {
+    background: var(--footer-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Barra Lateral (Sidebar) --- */
+.profile-sidebar {
     text-align: center;
-    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .avatar-wrapper {
-    width: 80px;
-    height: 80px;
-    border: 1px solid var(--gold);
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1.5rem;
     border-radius: 50%;
-    margin: 0 auto 1.5rem;
+    border: 3px solid var(--gold);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Efeito Hover na Foto (Upload) */
+.avatar-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--gold);
+    opacity: 0;
+    transition: opacity var(--transition);
 }
 
-.avatar-wrapper svg {
-    width: 40px;
-    height: 40px;
+.avatar-wrapper:hover .avatar-overlay {
+    opacity: 1;
 }
 
-.profile-header h1 {
-    font-size: 2rem;
-    letter-spacing: -1px;
+.upload-icon {
+    width: 30px;
+    height: 30px;
+    fill: var(--text-light);
+}
+
+.profile-sidebar h2 {
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
-.profile-header p {
+.membership-badge {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+.membership-badge span {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+/* Botão de Logout Vermelho */
+.btn--danger {
+    border-color: var(--error) !important;
+    color: var(--error) !important;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn--danger:hover {
+    background-color: var(--error) !important;
+    color: #fff !important;
+}
+
+/* --- Formulário Principal --- */
+.content-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.content-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+}
+
+.content-header p {
     color: var(--text-muted);
     font-size: 0.9rem;
 }
 
-/* Form Styles */
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    color: var(--gold);
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-    letter-spacing: 1px;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
-    font-family: var(--font-main);
-    border-radius: 2px;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--gold);
-}
-
-.profile-actions {
+.form-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1rem;
-    margin-top: 2.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
 }
 
-.profile-actions .btn {
-    text-align: center;
+.form-section-title {
+    margin: 2rem 0 1rem 0;
+    font-size: 1.2rem;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.form-actions {
+    margin-top: 2rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
 }
 
-.logout-link {
-    font-size: 0.6rem;
-    opacity: 0.6;
-    color: var(--text-muted) !important;
-}
-
-@media (max-width: 600px) {
-    .profile-card { padding: 2rem 1.5rem; }
-    .profile-actions { grid-template-columns: 1fr; }
+/* Responsividade para telemóveis */
+@media (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 }
