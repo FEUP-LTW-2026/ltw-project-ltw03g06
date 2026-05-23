@@ -25,7 +25,7 @@ try {
         exit;
     }
 } catch (PDOException $e) {
-    die("Erro: " . $e->getMessage());
+    die($e->getMessage());
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -35,8 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $birthdate = $_POST['birthdate'] ?? '';
     $gender = $_POST['gender'] ?? '';
     $newPassword = $_POST['new_password'] ?? '';
+    
+    $bio = $_POST['bio'] ?? $user['bio'];
+    $specializations = $_POST['specializations'] ?? $user['specializations'];
 
-    if (empty($name) || empty($email) || empty($phone) || empty($birthdate) || empty($gender)) {
+    if (empty($name) || empty($email) || empty($birthdate) || empty($gender)) {
         $error = 'Please fill in all required fields.';
     } else {
         try {
@@ -64,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if (empty($error)) {
-                $stmt = $db->prepare('UPDATE users SET name = ?, email = ?, phone = ?, birthdate = ?, gender = ?, image_url = ? WHERE id = ?');
-                $stmt->execute([$name, $email, $phone, $birthdate, $gender, $imageUrl, $userId]);
+                $stmt = $db->prepare('UPDATE users SET name = ?, email = ?, phone = ?, birthdate = ?, gender = ?, image_url = ?, bio = ?, specializations = ? WHERE id = ?');
+                $stmt->execute([$name, $email, $phone, $birthdate, $gender, $imageUrl, $bio, $specializations, $userId]);
 
                 if (!empty($newPassword)) {
                     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -95,6 +98,14 @@ require_once 'templates/header.php';
         <span class="hero-label">Member Dashboard</span>
         <h1>Account Settings</h1>
         <p>Manage your personal details, membership status, and security preferences.</p>
+        
+        <?php if ($user['role'] === 'trainer'): ?>
+            <a href="trainer_dashbord.php" class="btn btn--gold u-lift" style="margin-top: 1.5rem; display: inline-block;">Manage Schedule & Roster</a>
+        <?php endif; ?>
+        
+        <?php if ($user['role'] === 'admin'): ?>
+            <a href="admin_dashboard.php" class="btn btn--gold u-lift" style="margin-top: 1.5rem; display: inline-block;">Access Admin Portal</a>
+        <?php endif; ?>
     </header>
 
     <form action="" method="post" enctype="multipart/form-data" class="profile-container">
@@ -114,7 +125,7 @@ require_once 'templates/header.php';
             </label>
             
             <h2><?= htmlspecialchars($user['name']) ?></h2>
-            <p class="membership-badge">Active Membership <span><?= htmlspecialchars($user['plan'] ?? 'No Plan') ?></span></p>
+            <p class="membership-badge"><?= htmlspecialchars(ucfirst($user['role'])) ?> <span><?= htmlspecialchars($user['plan'] ?? '') ?></span></p>
 
             <a href="logout.php" class="btn btn--outline btn--danger u-lift">LOG OUT</a>
         </aside>
@@ -143,7 +154,7 @@ require_once 'templates/header.php';
 
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
+                    <input type="tel" id="phone" name="phone" value="<?= htmlspecialchars($user['phone'] ?? '') ?>">
                 </div>
 
                 <div class="form-group">
@@ -160,6 +171,20 @@ require_once 'templates/header.php';
                     </select>
                 </div>
             </div>
+
+            <?php if ($user['role'] === 'trainer'): ?>
+            <h3 class="form-section-title">Professional Profile</h3>
+            <div class="form-grid" style="grid-template-columns: 1fr;">
+                <div class="form-group">
+                    <label for="specializations">Specializations</label>
+                    <input type="text" id="specializations" name="specializations" value="<?= htmlspecialchars($user['specializations'] ?? '') ?>">
+                </div>
+                <div class="form-group">
+                    <label for="bio">Biography & Certifications</label>
+                    <textarea id="bio" name="bio" rows="4" style="width: 100%; padding: 1rem; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px; color: #ffffff; font-family: var(--font-main); resize: vertical;"><?= htmlspecialchars($user['bio'] ?? '') ?></textarea>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <h3 class="form-section-title">Security & Password</h3>
             <div class="form-group">

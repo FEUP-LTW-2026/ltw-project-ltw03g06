@@ -1,0 +1,109 @@
+.dashboard-page {
+    width: 100%;
+    padding-bottom: 5rem;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.session-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.session-header h2 {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 0;
+}
+
+.room-badge {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.session-time {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.roster-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.empty-roster {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.roster-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+.roster-list li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.roster-list li:last-child {
+    border-bottom: none;
+}
+
+.roster-list li strong {
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+.roster-list li span {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.roster-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.roster-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.roster-list::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 3px;
+}

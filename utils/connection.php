@@ -241,7 +241,7 @@ function bootstrapGymData(PDO $db): void
 
     $trainerSeeds = [
         [
-            'email' => 'trainer',
+            'email' => 'reed@ltwgym.com',
             'name' => 'Marcus Reed',
             'password' => '1234',
             'role' => 'trainer',
@@ -250,7 +250,7 @@ function bootstrapGymData(PDO $db): void
             'specializations' => 'Functional Strength, Nutrition Coaching',
         ],
         [
-            'email' => 'pork@ltwgym.com',
+            'email' => 'elena@ltwgym.com',
             'name' => 'Elena Vega',
             'password' => '1234',
             'role' => 'trainer',
@@ -302,7 +302,7 @@ function bootstrapGymData(PDO $db): void
     }
 
     $memberSeeds = [
-        ['email' => 'member', 'name' => 'Alex Morgan', 'password' => '1234', 'role' => 'member'],
+        ['email' => 'alex@ltwgym.com', 'name' => 'Alex Morgan', 'password' => '1234', 'role' => 'member'],
         ['email' => 'sophia@ltwgym.com', 'name' => 'Sophia Lane', 'password' => '1234', 'role' => 'member'],
         ['email' => 'daniel@ltwgym.com', 'name' => 'Daniel Cruz', 'password' => '1234', 'role' => 'member'],
         ['email' => 'maria@ltwgym.com', 'name' => 'Maria Silva', 'password' => '1234', 'role' => 'member'],
@@ -337,7 +337,7 @@ function bootstrapGymData(PDO $db): void
             'intensity' => 'High Intensity',
             'category' => 'Strength',
             'image_url' => 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop',
-            'trainer_email' => 'trainer',
+            'trainer_email' => 'reed@ltwgym.com',
         ],
         [
             'title' => 'ZenFlow Yoga',
@@ -355,7 +355,7 @@ function bootstrapGymData(PDO $db): void
             'intensity' => 'High Intensity',
             'category' => 'Cardio',
             'image_url' => 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop',
-            'trainer_email' => 'pork@ltwgym.com',
+            'trainer_email' => 'elena@ltwgym.com',
         ],
         [
             'title' => 'CoreForge Pilates',
@@ -527,7 +527,10 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $db->exec('PRAGMA foreign_keys = ON;');
-    bootstrapGymData($db);
+        
+    if (!tableExists($db, 'users')) {
+        bootstrapGymData($db);
+    }
 } catch (PDOException $e) {
     die('Erro ao conectar com a base de dados: ' . $e->getMessage());
 }
