@@ -8,6 +8,5 @@ $_SESSION = array();
 // Destrói a sessão no servidor
 session_destroy();
 
-// Redireciona o utilizador de volta para a Home Page
-header('Location: index.php');
+header('Location: login.php');
 exit;

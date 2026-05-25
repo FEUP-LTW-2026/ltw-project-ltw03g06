@@ -246,7 +246,7 @@ function bootstrapGymData(PDO $db): void
             'password' => '1234',
             'role' => 'trainer',
             'bio' => 'Functional strength coach focused on clean movement patterns, core stability, and disciplined nutrition.',
-            'image_url' => 'assets/img/trainers/marcus-reed.jpg',
+            'image_url' => 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop',
             'specializations' => 'Functional Strength, Nutrition Coaching',
         ],
         [
