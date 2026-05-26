@@ -50,6 +50,6 @@ The class schedule page now uses AJAX live search so filters update the session 
 
 ## Credentials
 
-- admin/p4s5w0rd
-- member/1234
-- trainer/1234
+- admin@ltwgym.com/p4s5w0rd
+- member@ltwgym.com/1234
+- trainer@ltwgym.com/1234

@@ -5,7 +5,7 @@ $pageTitle = 'LTW GYM - Trainers';
 $pageCss = 'trainers.css';
 $activePage = 'trainers';
 
-$trainerStmt = $db->prepare("SELECT * FROM users WHERE role = 'trainer' ORDER BY name");
+$trainerStmt = $db->prepare("SELECT * FROM users WHERE role = 'trainer' AND email <> 'trainer@ltwgym.com' ORDER BY name");
 $trainerStmt->execute();
 $trainers = $trainerStmt->fetchAll();
 
