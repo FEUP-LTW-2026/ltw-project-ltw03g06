@@ -71,6 +71,14 @@ body::before {
     transform: translateY(-3px);
 }
 
+.section-label {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
 header {
     padding: 1.5rem 5%; 
 }

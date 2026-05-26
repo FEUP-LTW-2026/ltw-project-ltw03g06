@@ -1,6 +1,6 @@
 .equipment-page {
-    padding: 2rem 5% 4rem;
-    max-width: 1400px;
+    width: min(96vw, 2400px);
+    padding: 2rem clamp(0.75rem, 1.5vw, 1.5rem) 4rem;
     margin: 0 auto;
 }
 
@@ -25,12 +25,12 @@
 
 .equipment-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
 }
 
 .equipment-card {
-    padding: 1.5rem;
+    padding: 1.6rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
@@ -95,6 +95,12 @@
     color: var(--text-muted);
     line-height: 1.65;
     font-size: 0.92rem;
+}
+
+@media (max-width: 1200px) {
+    .equipment-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 1080px) {

@@ -12,6 +12,13 @@ $filters = normalizeScheduleFilters($_GET);
 $filterQuery = http_build_query(array_filter($filters, static fn ($value) => $value !== '' && $value !== 0));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($memberId <= 0) {
+        $_SESSION['flash_message'] = 'Please log in to enroll, cancel, or review classes.';
+        $_SESSION['flash_type'] = 'error';
+        header('Location: login.php');
+        exit;
+    }
+
     $action = $_POST['action'] ?? '';
     $sessionId = (int) ($_POST['session_id'] ?? 0);
     $message = 'Unable to complete that action.';
@@ -107,7 +114,7 @@ require_once 'templates/header.php';
 
 <main class="classes-page">
     <section class="schedule-hero">
-        <p class="section-label">Member dashboard</p>
+        <p class="section-label">Schedule</p>
         <h1>Browse the live class schedule</h1>
         <p>Filter by class type, trainer, day, time, or a live search term. Enroll in open sessions, cancel upcoming bookings, and review the classes you have attended.</p>
     </section>
