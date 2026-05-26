@@ -31,7 +31,7 @@ The class schedule page now uses AJAX live search so filters update the session 
 **Trainers:**
 - [X] Manage their public profile, including bio, specializations, and certifications.
 - [X] View the roster of members enrolled in their classes.
-- [] Track and manage their assigned class schedule.
+- [X] Track and manage their assigned class schedule.
 
 **Admins:**
 - [ ] Manage members and trainers (create, update, and deactivate accounts).
