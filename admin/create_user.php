@@ -2,6 +2,7 @@
 require_once '../utils/connection.php';
 require_once 'auth.php';
 requireAdmin();
+$pageCss = 'admin.css';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt->execute([$name, $email, $password, $role]);
 
-    header("Location: users.php");
+    header("Location: user.php");
     exit;
 }
 
@@ -28,19 +29,35 @@ require_once '../templates/header.php';
 
 <h1>Create User</h1>
 
-<form method="POST">
+<form method="POST" class="admin-form">
 
-    <input name="name" placeholder="Name" required>
-    <input name="email" placeholder="Email" required>
-    <input name="password" type="password" placeholder="Password" required>
+    <label>
+        Name
+        <input name="name" required>
+    </label>
 
-    <select name="role">
-        <option value="member">Member</option>
-        <option value="trainer">Trainer</option>
-        <option value="admin">Admin</option>
-    </select>
+    <label>
+        Email
+        <input name="email" required>
+    </label>
 
-    <button type="submit" class="btn btn--gold">Create</button>
+    <label>
+        Password
+        <input name="password" type="password" required>
+    </label>
+
+    <label>
+        Role
+        <select name="role">
+            <option value="member">Member</option>
+            <option value="trainer">Trainer</option>
+            <option value="admin">Admin</option>
+        </select>
+    </label>
+
+    <button type="submit" class="btn btn--gold u-lift">
+        Create
+    </button>
 
 </form>
 

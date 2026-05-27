@@ -2,6 +2,7 @@
 require_once '../utils/connection.php';
 require_once 'auth.php';
 requireAdmin();
+$pageCss = 'admin.css';
 
 $id = (int) ($_GET['id'] ?? 0);
 
@@ -10,7 +11,7 @@ $stmt->execute([$id]);
 $user = $stmt->fetch();
 
 if (!$user) {
-    header("Location: users.php");
+    header("Location: user.php");
     exit;
 }
 

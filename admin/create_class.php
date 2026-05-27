@@ -4,6 +4,7 @@ require_once 'auth.php';
 requireAdmin();
 
 $pageTitle = "Create Class";
+$pageCss = "admin.css";
 
 $error = '';
 $success = '';
@@ -57,11 +58,15 @@ require_once '../templates/header.php';
     <h1>Create Class</h1>
 
     <?php if ($error): ?>
-        <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+        <p style="color:red; margin-top:1rem;">
+            <?= htmlspecialchars($error) ?>
+        </p>
     <?php endif; ?>
 
     <?php if ($success): ?>
-        <p style="color:green;"><?= htmlspecialchars($success) ?></p>
+        <p style="color:green; margin-top:1rem;">
+            <?= htmlspecialchars($success) ?>
+        </p>
     <?php endif; ?>
 
     <form method="post" class="admin-form">
@@ -78,7 +83,7 @@ require_once '../templates/header.php';
 
         <label>
             Category *
-            <input type="text" name="category" placeholder="Strength, Cardio..." required>
+            <input type="text" name="category" required>
         </label>
 
         <label>

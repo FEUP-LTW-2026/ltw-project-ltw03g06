@@ -1,15 +1,16 @@
 <?php
+declare(strict_types=1);
 require_once '../utils/connection.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
 $pageTitle = "Admin Dashboard";
 
-// stats
-$totalUsers = $db->query("SELECT COUNT(*) FROM users")->fetchColumn();
-$totalTrainers = $db->query("SELECT COUNT(*) FROM users WHERE role = 'trainer'")->fetchColumn();
-$totalClasses = $db->query("SELECT COUNT(*) FROM classes")->fetchColumn();
-$totalEquipment = $db->query("SELECT COUNT(*) FROM equipment")->fetchColumn();
+// Stats (simples e seguros)
+$totalUsers = (int) $db->query("SELECT COUNT(*) FROM users")->fetchColumn();
+$totalTrainers = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'trainer'")->fetchColumn();
+$totalClasses = (int) $db->query("SELECT COUNT(*) FROM classes")->fetchColumn();
+$totalEquipment = (int) $db->query("SELECT COUNT(*) FROM equipment")->fetchColumn();
 
 require_once '../templates/header.php';
 ?>

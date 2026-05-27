@@ -2,11 +2,12 @@
 require_once '../utils/connection.php';
 require_once 'auth.php';
 requireAdmin();
+$pageCss = 'admin.css';
 
 $id = (int) ($_GET['id'] ?? 0);
 
 if ($id <= 0) {
-    header("Location: users.php");
+    header("Location: user.php");
     exit;
 }
 
@@ -16,7 +17,7 @@ $stmt->execute([$id]);
 $user = $stmt->fetch();
 
 if (!$user) {
-    header("Location: users.php");
+    header("Location: user.php");
     exit;
 }
 
@@ -26,7 +27,7 @@ if ($user['role'] === 'admin') {
     $countAdmins = $db->query("SELECT COUNT(*) FROM users WHERE role = 'admin'")->fetchColumn();
 
     if ($countAdmins <= 1) {
-        header("Location: users.php?error=last_admin");
+        header("Location: user.php?error=last_admin");
         exit;
     }
 }
@@ -35,5 +36,5 @@ if ($user['role'] === 'admin') {
 $delete = $db->prepare("DELETE FROM users WHERE id = ?");
 $delete->execute([$id]);
 
-header("Location: users.php?success=deleted");
+header("Location: user.php?success=deleted");
 exit;

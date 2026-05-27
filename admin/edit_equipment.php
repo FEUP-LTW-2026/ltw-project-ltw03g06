@@ -2,6 +2,7 @@
 require_once '../utils/connection.php';
 require_once 'auth.php';
 requireAdmin();
+$pageCss = 'admin.css';
 
 $id = (int) ($_GET['id'] ?? 0);
 

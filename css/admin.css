@@ -6,6 +6,7 @@
     margin-bottom: 2rem;
 }
 
+
 .admin-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -57,30 +58,6 @@
     text-decoration: none;
 }
 
-.admin-form {
-    margin-top: 2rem;
-    display: grid;
-    gap: 1rem;
-    max-width: 400px;
-}
-
-.admin-form input,
-.admin-form select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #333;
-    background: #111;
-    color: white;
-    border-radius: 6px;
-}
-
-.admin-form label {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    color: white;
-}
-
 .admin-table a:last-child {
     color: red;
 }
@@ -92,19 +69,54 @@
     max-width: 500px;
 }
 
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: white;
+}
+
+
 .admin-form input,
 .admin-form textarea,
 .admin-form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #333;
-    background: #111;
-    color: white;
+    background: #1a1a1a;
+    color: #ffffff;
     border-radius: 6px;
+    font-size: 14px;
 }
 
-.admin-form label {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    outline: 2px solid gold;
+    border-color: gold;
+}
+
+
+.admin-form input::placeholder,
+.admin-form textarea::placeholder {
+    color: #aaa;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn--gold {
+    background: gold;
+    color: #111;
+    font-weight: bold;
+}
+
+.btn--gold:hover {
+    opacity: 0.9;
 }

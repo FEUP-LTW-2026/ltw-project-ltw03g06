@@ -4,13 +4,20 @@
     <meta charset="utf-8">
     <title><?= isset($pageTitle) ? htmlspecialchars($pageTitle) : 'LTW GYM' ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/global.css">
+
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet" href="/css/global.css">
+
+    <!-- ADMIN / PAGE CSS -->
     <?php if (isset($pageCss)): ?>
-        <link rel="stylesheet" href="css/<?= htmlspecialchars($pageCss) ?>">
+        <link rel="stylesheet" href="/css/<?= htmlspecialchars($pageCss) ?>">
     <?php endif; ?>
-    <script src="js/nav.js" defer></script>
+
+    <!-- JS -->
+    <script src="/js/nav.js" defer></script>
+
     <?php if (isset($pageScript)): ?>
-        <script src="js/<?= htmlspecialchars($pageScript) ?>" defer></script>
+        <script src="/js/<?= htmlspecialchars($pageScript) ?>" defer></script>
     <?php endif; ?>
 
 </head>

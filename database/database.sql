@@ -396,20 +396,8 @@ INSERT INTO equipment (name, area, total_units, available_units, status, notes) 
 ('Rowers', 'Cardio Zone', 5, 2, 'limited', 'High-demand during peak hours.'),
 ('Dumbbell Rack', 'Strength Floor', 12, 12, 'available', 'Full rack available for free weight work.'),
 ('Cable Stations', 'Strength Floor', 4, 3, 'limited', 'One station is rotated for maintenance checks.'),
-<<<<<<< HEAD
 ('Battle Ropes', 'Functional Zone', 3, 1, 'maintenance', 'One rope set is temporarily out of service.');
 
 ALTER TABLE users ADD COLUMN active INTEGER DEFAULT 1;
 
-ALTER TABLE users ADD COLUMN created_at TEXT DEFAULT CURRENT_TIMESTAMP;
 
-UPDATE users SET name=?, email=?, role=? WHERE id=?
-=======
-('Battle Ropes', 'Functional Zone', 3, 1, 'maintenance', 'One rope set is temporarily out of service.'),
-('Bench Press Stations', 'Strength Floor', 4, 4, 'available', 'Popular during peak strength sessions.'),
-('Assault Bikes', 'Cardio Zone', 6, 5, 'available', 'Great for sprint intervals and warmups.'),
-('Kettlebell Corner', 'Functional Zone', 14, 11, 'limited', 'Heavier bells rotate quickly during class blocks.'),
-('Stretch Mats', 'Mobility Studio', 20, 17, 'available', 'Keep one set aside for guided mobility work.'),
-('SkiErgs', 'Cardio Zone', 2, 1, 'limited', 'One unit is shared with endurance classes.'),
-('Smith Machines', 'Strength Floor', 2, 2, 'available', 'Allocated for accessory work and beginner sets.');
->>>>>>> main
