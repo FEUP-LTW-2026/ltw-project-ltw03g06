@@ -5,7 +5,7 @@ $pageTitle = 'LTW GYM - Trainers';
 $pageCss = 'trainers.css';
 $activePage = 'trainers';
 
-$trainerStmt = $db->prepare("SELECT * FROM users WHERE role = 'trainer' ORDER BY name");
+$trainerStmt = $db->prepare("SELECT * FROM users WHERE role = 'trainer' AND email <> 'trainer@ltwgym.com' ORDER BY name");
 $trainerStmt->execute();
 $trainers = $trainerStmt->fetchAll();
 
@@ -14,7 +14,7 @@ require_once 'templates/header.php';
 
 <main class="trainers-page">
     <section class="trainers-header">
-        <p class="section-label">Coach directory</p>
+        <p class="section-label">Trainers</p>
         <h1>Meet the trainers behind the schedule</h1>
         <p>Each profile includes the coach's focus areas and the classes they currently teach, so members can jump from the trainer list straight back into the live schedule.</p>
     </section>

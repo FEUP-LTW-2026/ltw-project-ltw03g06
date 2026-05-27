@@ -29,9 +29,9 @@ Run using php -S localhost:9000
 The class schedule page now uses AJAX live search so filters update the session list without a full page reload.
 
 **Trainers:**
-- [ ] Manage their public profile, including bio, specializations, and certifications.
-- [ ] View the roster of members enrolled in their classes.
-- [ ] Track and manage their assigned class schedule.
+- [X] Manage their public profile, including bio, specializations, and certifications.
+- [X] View the roster of members enrolled in their classes.
+- [X] Track and manage their assigned class schedule.
 
 **Admins:**
 - [ ] Manage members and trainers (create, update, and deactivate accounts).
@@ -50,6 +50,6 @@ The class schedule page now uses AJAX live search so filters update the session 
 
 ## Credentials
 
-- admin/p4s5w0rd
-- member/1234
-- trainer/1234
+- admin@ltwgym.com/p4s5w0rd
+- member@ltwgym.com/1234
+- trainer@ltwgym.com/1234

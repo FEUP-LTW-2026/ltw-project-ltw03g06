@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // 4. Verificar se o utilizador existe e se a password está correta
             // A função password_verify compara o texto limpo com o hash encriptado
-            if ($user && password_verify($password, $user['password'])) {
+            if ($user && ($user['password'] === $password || password_verify($password, $user['password']))) {
                 
                 // 5. Iniciar as variáveis de sessão (o browser "lembra-se" do utilizador)
                 $_SESSION['user_id'] = $user['id'];

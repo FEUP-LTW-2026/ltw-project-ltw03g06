@@ -13,7 +13,7 @@ require_once 'templates/header.php';
 
 <main class="equipment-page">
     <section class="equipment-hero">
-        <p class="section-label">Member access</p>
+        <p class="section-label">Equipment</p>
         <h1>Equipment availability</h1>
         <p>Check which machines are available right now in the main training area before you head in.</p>
     </section>
