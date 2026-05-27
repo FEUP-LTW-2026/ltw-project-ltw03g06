@@ -1,0 +1,110 @@
+.admin-container {
+    padding: 3rem;
+}
+
+.admin-container h1 {
+    margin-bottom: 2rem;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.admin-card {
+    background: #111;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.admin-card h2 {
+    font-size: 2.5rem;
+    color: gold;
+}
+
+.admin-table {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #222;
+    text-align: left;
+}
+
+.admin-table th {
+    background: #1a1a1a;
+    color: gold;
+}
+
+.admin-table tr:hover {
+    background: #1c1c1c;
+}
+
+.admin-table a {
+    color: gold;
+    text-decoration: none;
+}
+
+.admin-form {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    max-width: 400px;
+}
+
+.admin-form input,
+.admin-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    border-radius: 6px;
+}
+
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: white;
+}
+
+.admin-table a:last-child {
+    color: red;
+}
+
+.admin-form {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    max-width: 500px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    border-radius: 6px;
+}
+
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

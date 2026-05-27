@@ -110,3 +110,9 @@ INSERT INTO equipment (name, area, total_units, available_units, status, notes) 
 ('Dumbbell Rack', 'Strength Floor', 12, 12, 'available', 'Full rack available for free weight work.'),
 ('Cable Stations', 'Strength Floor', 4, 3, 'limited', 'One station is rotated for maintenance checks.'),
 ('Battle Ropes', 'Functional Zone', 3, 1, 'maintenance', 'One rope set is temporarily out of service.');
+
+ALTER TABLE users ADD COLUMN active INTEGER DEFAULT 1;
+
+ALTER TABLE users ADD COLUMN created_at TEXT DEFAULT CURRENT_TIMESTAMP;
+
+UPDATE users SET name=?, email=?, role=? WHERE id=?
