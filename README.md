@@ -38,7 +38,7 @@ The class schedule page now uses AJAX live search so filters update the session 
 - [X] Manage the class catalog (create, edit, and remove classes) and assign trainers to them.
 - [X] Manage equipment in the main training area (add, update availability status, and remove items).
 - [X] Elevate a user to admin status.
-- [ ] Oversee and ensure the smooth operation of the entire system.
+- [X] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
 - [ ] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
