@@ -24,7 +24,7 @@
 <body>
     <header>
         <nav class="main-nav">
-            <a href="index.php" class="logo">LTW GYM</a>
+            <a href="/index.php" class="logo">LTW GYM</a>
 
             <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
