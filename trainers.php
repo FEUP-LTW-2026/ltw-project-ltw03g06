@@ -26,12 +26,13 @@ require_once 'templates/header.php';
                 $classStmt->execute([$trainer['id']]);
                 $classes = $classStmt->fetchAll();
 
-                $sessionStmt = $db->prepare('SELECT c.title, c.category, cs.start_at, cs.room
+                $prevMonday = $db->query("SELECT date('now', printf('-%d days', (((CAST(strftime('%w','now') AS INTEGER) + 6) % 7) + 7)))")->fetchColumn();
+                $sessionStmt = $db->prepare("SELECT c.title, c.category, cs.start_at, cs.room
                     FROM class_sessions cs
                     JOIN classes c ON c.id = cs.class_id
-                    WHERE c.trainer_id = ? AND cs.start_at >= datetime("now")
-                    ORDER BY cs.start_at');
-                $sessionStmt->execute([$trainer['id']]);
+                    WHERE c.trainer_id = ? AND date(cs.start_at) >= date(?) AND cs.start_at >= datetime('now')
+                    ORDER BY cs.start_at");
+                $sessionStmt->execute([$trainer['id'], $prevMonday]);
                 $upcomingSessions = $sessionStmt->fetchAll();
 
                 $specializations = array_filter(array_map('trim', explode(',', (string) ($trainer['specializations'] ?? ''))));
