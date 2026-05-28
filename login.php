@@ -39,9 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_name'] = $user['name'];
                 $_SESSION['user_role'] = $user['role']; // útil para permissões de admin/treinador
 
-                // Redireciona para a página de perfil
+                if ($user['role'] === 'admin') {
+                    header('Location: /admin/dashboard.php');
+                    exit;
+                }
+
+                if ($user['role'] === 'trainer') {
+                header('Location: trainer_dashboard.php'); 
+                exit;
+                }
+
                 header('Location: profile.php');
                 exit;
+
             } else {
                 // Por segurança, usamos uma mensagem genérica para não revelar se o email existe ou não
                 $error = 'Invalid email address or password.';

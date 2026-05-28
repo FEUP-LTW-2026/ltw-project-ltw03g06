@@ -1,9 +1,19 @@
 .admin-container {
-    padding: 3rem;
+    padding: 3rem 4rem; 
 }
 
-.admin-container h1 {
-    margin-bottom: 2rem;
+.admin-container section {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 3rem;
+    padding: 1rem 0;
+    border-top: 1px solid #222;
+}
+
+.admin-container h1,
+.admin-container h2 {
+    margin-left: 0;
+    padding-left: 0;
 }
 
 
@@ -29,7 +39,7 @@
 
 .admin-table {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-collapse: collapse;
     background: #111;
     color: white;
@@ -119,4 +129,18 @@
 
 .btn--gold:hover {
     opacity: 0.9;
+}
+
+.admin-actions {
+    margin-top: 2rem;
+}
+
+.admin-actions h2 {
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.admin-actions .btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
