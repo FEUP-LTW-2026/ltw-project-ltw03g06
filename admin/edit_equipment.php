@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
@@ -16,6 +17,7 @@ if (!$item) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
 
     $name = trim($_POST['name']);
     $area = trim($_POST['area']);
@@ -23,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $available = (int) $_POST['available_units'];
     $status = $_POST['status'];
     $notes = trim($_POST['notes']);
+    $allowedStatuses = ['available', 'limited', 'maintenance'];
+
+    if (!in_array($status, $allowedStatuses, true)) {
+        $status = 'available';
+    }
 
     $update = $db->prepare("
         UPDATE equipment
@@ -44,6 +51,7 @@ require_once '../templates/header.php';
 <h1>Edit Equipment</h1>
 
 <form method="POST">
+    <?= csrf_input() ?>
 
     <input name="name" value="<?= htmlspecialchars($item['name']) ?>" required>
     <input name="area" value="<?= htmlspecialchars($item['area']) ?>" required>

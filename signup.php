@@ -2,6 +2,7 @@
 // Iniciar a sessão e conectar à base de dados
 session_start();
 require_once 'utils/connection.php';
+require_once 'utils/csrf.php';
 
 $pageTitle = 'LTW GYM - Sign Up';
 $pageCss = 'signup.css';
@@ -12,6 +13,7 @@ $success = '';
 
 // Verificar se o formulário foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     // Recolher os dados do formulário
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
@@ -56,6 +58,7 @@ require_once 'templates/header.php';
         <p>Start your elite fitness journey today</p>
 
         <form action="" method="post">
+            <?= csrf_input() ?>
             
             <?php if ($error): ?>
                 <div class="alert alert-error" style="color: var(--error); margin-bottom: 1rem; text-align: center; font-weight: bold;">

@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 
@@ -10,6 +11,7 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
 
     $name = trim($_POST['name'] ?? '');
     $area = trim($_POST['area'] ?? '');
@@ -17,6 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $available = (int) ($_POST['available_units'] ?? 0);
     $status = $_POST['status'] ?? 'available';
     $notes = trim($_POST['notes'] ?? '');
+    $allowedStatuses = ['available', 'limited', 'maintenance'];
+
+    if (!in_array($status, $allowedStatuses, true)) {
+        $status = 'available';
+    }
 
     if ($name === '' || $area === '' || $total <= 0) {
         $error = "Please fill all required fields.";
@@ -49,6 +56,7 @@ require_once '../templates/header.php';
     <?php endif; ?>
 
     <form method="POST" class="admin-form">
+        <?= csrf_input() ?>
 
         <label>
             Name

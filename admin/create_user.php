@@ -1,15 +1,22 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
 
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = $_POST['role'];
+    $allowedRoles = ['member', 'trainer', 'admin'];
+
+    if (!in_array($role, $allowedRoles, true)) {
+        $role = 'member';
+    }
 
     $stmt = $db->prepare("
         INSERT INTO users (name, email, password, role)
@@ -30,6 +37,7 @@ require_once '../templates/header.php';
 <h1>Create User</h1>
 
 <form method="POST" class="admin-form">
+    <?= csrf_input() ?>
 
     <label>
         Name

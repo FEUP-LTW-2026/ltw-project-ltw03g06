@@ -2,6 +2,7 @@
 // 1. Iniciar a sessão e conectar à base de dados
 session_start();
 require_once 'utils/connection.php';
+require_once 'utils/csrf.php';
 
 // Se o utilizador já estiver ligado, redireciona diretamente para o perfil
 if (isset($_SESSION['user_id'])) {
@@ -18,6 +19,7 @@ $error = '';
 
 // 2. Verificar se o formulário de login foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
@@ -31,9 +33,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $stmt->fetch();
 
             // 4. Verificar se o utilizador existe e se a password está correta
-            // A função password_verify compara o texto limpo com o hash encriptado
-            if ($user && ($user['password'] === $password || password_verify($password, $user['password']))) {
-                
+            // Use password_verify for hashed passwords. If a legacy plaintext password
+            // is detected, verify equality and immediately rehash it (migration path).
+            $verified = false;
+            if ($user) {
+                $stored = $user['password'];
+                $info = password_get_info($stored);
+                // Detect whether the stored value is a password hash. Some PHP
+                // builds return NULL for 'algo' when the value is not a hash,
+                // so check algoName for 'unknown' which indicates plaintext.
+                if (!empty($info['algoName']) && $info['algoName'] !== 'unknown') {
+                    // Stored value looks like a hash
+                    $verified = password_verify($password, $stored);
+                } else {
+                    // Legacy plaintext fallback: compare and upgrade to a hash
+                    if ($password === $stored) {
+                        $verified = true;
+                        $newHash = password_hash($password, PASSWORD_DEFAULT);
+                        $update = $db->prepare('UPDATE users SET password = ? WHERE id = ?');
+                        $update->execute([$newHash, $user['id']]);
+                        $user['password'] = $newHash;
+                    }
+                }
+            }
+
+            if ($verified) {
                 // 5. Iniciar as variáveis de sessão (o browser "lembra-se" do utilizador)
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['name'];
@@ -71,6 +95,7 @@ require_once 'templates/header.php';
         <p>Log in to access your elite training portal</p>
 
         <form action="" method="post">
+            <?= csrf_input() ?>
             
             <?php if ($error): ?>
                 <div class="alert alert-error" style="color: var(--error); margin-bottom: 1rem; text-align: center; font-weight: bold;">

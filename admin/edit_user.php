@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
@@ -19,9 +20,15 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $role = $_POST['role'] ?? 'member';
+    $allowedRoles = ['member', 'trainer', 'admin'];
+
+    if (!in_array($role, $allowedRoles, true)) {
+        $role = 'member';
+    }
 
     if ($name === '' || $email === '') {
         $error = "Name and email are required.";
@@ -58,6 +65,7 @@ require_once '../templates/header.php';
     <?php endif; ?>
 
     <form method="post" class="admin-form">
+        <?= csrf_input() ?>
 
         <label>
             Name

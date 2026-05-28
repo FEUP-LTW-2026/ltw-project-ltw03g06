@@ -26,18 +26,33 @@ function scheduleTimeOptions(): array
 
 function normalizeScheduleFilters(array $source): array
 {
+    $day = trim((string) ($source['day'] ?? ''));
+    $time = trim((string) ($source['time'] ?? ''));
+
+    if (!array_key_exists($day, scheduleDayOptions())) {
+        $day = '';
+    }
+
+    if (!array_key_exists($time, scheduleTimeOptions())) {
+        $time = '';
+    }
+
     return [
         'search' => trim((string) ($source['search'] ?? '')),
         'type' => trim((string) ($source['type'] ?? '')),
-        'trainer' => (int) ($source['trainer'] ?? 0),
-        'day' => trim((string) ($source['day'] ?? '')),
-        'time' => trim((string) ($source['time'] ?? '')),
+        'trainer' => max(0, (int) ($source['trainer'] ?? 0)),
+        'day' => $day,
+        'time' => $time,
     ];
 }
 
 function buildScheduleQuery(array $filters, int $memberId, string $mode = 'upcoming'): array
 {
     $filters = normalizeScheduleFilters($filters);
+    if ($mode !== 'past') {
+        $mode = 'upcoming';
+    }
+
     $where = [];
     $params = [$memberId, $memberId, $memberId];
 
@@ -220,12 +235,14 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
 
                     <?php if ((int) $session['is_enrolled'] === 1): ?>
                         <form action="<?= htmlspecialchars($formAction, ENT_QUOTES, 'UTF-8') ?>" method="post" class="session-action-form">
+                            <?= csrf_input() ?>
                             <input type="hidden" name="action" value="cancel">
                             <input type="hidden" name="session_id" value="<?= (int) $session['session_id'] ?>">
                             <button type="submit" class="<?= $enrollClass ?>">Cancel enrollment</button>
                         </form>
                     <?php elseif ($remainingSpots > 0): ?>
                         <form action="<?= htmlspecialchars($formAction, ENT_QUOTES, 'UTF-8') ?>" method="post" class="session-action-form">
+                            <?= csrf_input() ?>
                             <input type="hidden" name="action" value="enroll">
                             <input type="hidden" name="session_id" value="<?= (int) $session['session_id'] ?>">
                             <button type="submit" class="<?= $enrollClass ?>"><?= $actionLabel ?></button>
@@ -260,6 +277,7 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
                 </div>
 
                 <form action="<?= htmlspecialchars($formAction, ENT_QUOTES, 'UTF-8') ?>" method="post" class="review-form">
+                    <?= csrf_input() ?>
                     <input type="hidden" name="action" value="review">
                     <input type="hidden" name="session_id" value="<?= (int) $session['session_id'] ?>">
                     <div class="review-grid">

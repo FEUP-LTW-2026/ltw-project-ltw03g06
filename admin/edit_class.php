@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
@@ -28,6 +29,7 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
 
     $title = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
@@ -36,6 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $intensity = trim($_POST['intensity'] ?? '');
     $image_url = trim($_POST['image_url'] ?? '');
     $trainer_id = (int) ($_POST['trainer_id'] ?? 0);
+    $allowedIntensities = ['Low', 'Medium', 'High'];
+
+    if (!in_array($intensity, $allowedIntensities, true)) {
+        $intensity = 'Low';
+    }
 
     if ($title === '' || $description === '' || $category === '' || $duration <= 0) {
         $error = "Please fill all required fields.";
@@ -88,6 +95,7 @@ require_once '../templates/header.php';
     <?php endif; ?>
 
     <form method="post" class="admin-form">
+        <?= csrf_input() ?>
 
         <label>
             Title *
