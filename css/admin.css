@@ -1,0 +1,183 @@
+/* css/admin.css */
+
+.admin-container {
+    padding: 3rem 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.admin-container section {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-container h1, .admin-container h2 {
+    margin-left: 0;
+    padding-left: 0;
+    letter-spacing: -1px;
+}
+
+/* Grelha das Estatísticas (Cards) */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsivo automático */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.admin-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    text-align: center;
+    transition: transform var(--transition), border-color var(--transition);
+}
+
+.admin-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+}
+
+.admin-card h2 {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.admin-card p {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* Tabelas de Administração */
+.admin-table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.admin-table th, .admin-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: left;
+    color: var(--text-light);
+}
+
+.admin-table th {
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--gold);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.admin-table tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-table a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity var(--transition);
+    margin-right: 15px;
+}
+
+.admin-table a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* O último link costuma ser o botão de apagar/remover */
+.admin-table a:last-child {
+    color: var(--error);
+    margin-right: 0;
+}
+
+/* Formulários do Admin */
+.admin-form {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.5rem;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+}
+
+.admin-form input, .admin-form textarea, .admin-form select {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    color: var(--text-light);
+    font-family: var(--font-main);
+    transition: border-color var(--transition);
+}
+
+.admin-form input:focus, .admin-form textarea:focus, .admin-form select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.admin-form input::placeholder, .admin-form textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.admin-actions {
+    margin-top: 2rem;
+}
+
+.admin-actions h2 {
+    margin-bottom: 1.5rem;
+}
+
+.admin-actions .btn {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsividade para ecrãs menores */
+@media (max-width: 900px) {
+    /* Faz com que a tabela ganhe uma barra de scroll horizontal nos telemóveis */
+    .admin-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-top: 1.5rem;
+    }
+    
+    .admin-table {
+        margin-top: 0;
+        white-space: nowrap;
+    }
+
+    .admin-container {
+        padding: 2rem 1.25rem;
+    }
+}

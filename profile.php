@@ -104,7 +104,7 @@ require_once 'templates/header.php';
         <?php endif; ?>
         
         <?php if ($user['role'] === 'admin'): ?>
-            <a href="admin_dashboard.php" class="btn btn--gold u-lift" style="margin-top: 1.5rem; display: inline-block;">Access Admin Portal</a>
+            <a href="/admin/dashboard.php" class="btn btn--gold u-lift" style="margin-top: 1.5rem; display: inline-block;">Access Admin Portal</a>
         <?php endif; ?>
     </header>
 
