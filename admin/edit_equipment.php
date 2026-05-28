@@ -25,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $available = (int) $_POST['available_units'];
     $status = $_POST['status'];
     $notes = trim($_POST['notes']);
+    $allowedStatuses = ['available', 'limited', 'maintenance'];
+
+    if (!in_array($status, $allowedStatuses, true)) {
+        $status = 'available';
+    }
 
     $update = $db->prepare("
         UPDATE equipment

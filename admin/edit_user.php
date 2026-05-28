@@ -24,6 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $role = $_POST['role'] ?? 'member';
+    $allowedRoles = ['member', 'trainer', 'admin'];
+
+    if (!in_array($role, $allowedRoles, true)) {
+        $role = 'member';
+    }
 
     if ($name === '' || $email === '') {
         $error = "Name and email are required.";

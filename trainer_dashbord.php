@@ -184,7 +184,7 @@ require_once 'templates/header.php';
                                             <span style="display: block; font-size: 0.85rem; color: #888;"><?= htmlspecialchars($member['email']) ?></span>
                                         </div>
                                         
-                                        <form method="POST" onsubmit="return confirm('Remove <?= htmlspecialchars($member['name']) ?> from this class?');">
+                                        <form method="POST" onsubmit="return confirm(<?= json_encode('Remove ' . $member['name'] . ' from this class?') ?>);">
                                             <?= csrf_input() ?>
                                             <input type="hidden" name="action" value="remove_member">
                                             <input type="hidden" name="session_id" value="<?= $sid ?>">

@@ -12,6 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = $_POST['role'];
+    $allowedRoles = ['member', 'trainer', 'admin'];
+
+    if (!in_array($role, $allowedRoles, true)) {
+        $role = 'member';
+    }
 
     $stmt = $db->prepare("
         INSERT INTO users (name, email, password, role)

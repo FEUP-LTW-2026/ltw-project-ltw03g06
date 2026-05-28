@@ -26,18 +26,33 @@ function scheduleTimeOptions(): array
 
 function normalizeScheduleFilters(array $source): array
 {
+    $day = trim((string) ($source['day'] ?? ''));
+    $time = trim((string) ($source['time'] ?? ''));
+
+    if (!array_key_exists($day, scheduleDayOptions())) {
+        $day = '';
+    }
+
+    if (!array_key_exists($time, scheduleTimeOptions())) {
+        $time = '';
+    }
+
     return [
         'search' => trim((string) ($source['search'] ?? '')),
         'type' => trim((string) ($source['type'] ?? '')),
-        'trainer' => (int) ($source['trainer'] ?? 0),
-        'day' => trim((string) ($source['day'] ?? '')),
-        'time' => trim((string) ($source['time'] ?? '')),
+        'trainer' => max(0, (int) ($source['trainer'] ?? 0)),
+        'day' => $day,
+        'time' => $time,
     ];
 }
 
 function buildScheduleQuery(array $filters, int $memberId, string $mode = 'upcoming'): array
 {
     $filters = normalizeScheduleFilters($filters);
+    if ($mode !== 'past') {
+        $mode = 'upcoming';
+    }
+
     $where = [];
     $params = [$memberId, $memberId, $memberId];
 

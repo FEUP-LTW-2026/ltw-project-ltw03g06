@@ -52,8 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $fileName = $_FILES['profile_pic']['name'];
                 $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
                 $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+                $maxUploadSize = 5 * 1024 * 1024;
                 
-                if (in_array($fileExtension, $allowedExtensions)) {
+                if ($_FILES['profile_pic']['size'] > $maxUploadSize) {
+                    $error = 'Image is too large. Maximum size is 5 MB.';
+                } elseif (in_array($fileExtension, $allowedExtensions, true)) {
+                    $imageInfo = @getimagesize($fileTmpPath);
+                    $allowedImageTypes = [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_WEBP];
+
+                    if ($imageInfo === false || !in_array($imageInfo[2], $allowedImageTypes, true)) {
+                        $error = 'Invalid image file.';
+                    } else {
                     $uploadDir = __DIR__ . '/assets/uploads/';
                     if (!is_dir($uploadDir)) {
                         mkdir($uploadDir, 0755, true);
@@ -62,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $newFileName = 'profile_' . $userId . '_' . time() . '.' . $fileExtension;
                     if (move_uploaded_file($fileTmpPath, $uploadDir . $newFileName)) {
                         $imageUrl = 'assets/uploads/' . $newFileName;
+                    }
                     }
                 } else {
                     $error = 'Invalid file type. Only JPG, PNG, and WEBP allowed.';
