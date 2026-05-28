@@ -37,7 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user) {
                 $stored = $user['password'];
                 $info = password_get_info($stored);
-                if ($info['algo'] !== 0) {
+                // Detect whether the stored value is a password hash. Some PHP
+                // builds return NULL for 'algo' when the value is not a hash,
+                // so check algoName for 'unknown' which indicates plaintext.
+                if (!empty($info['algoName']) && $info['algoName'] !== 'unknown') {
                     // Stored value looks like a hash
                     $verified = password_verify($password, $stored);
                 } else {
