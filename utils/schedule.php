@@ -41,12 +41,13 @@ function buildScheduleQuery(array $filters, int $memberId, string $mode = 'upcom
     $where = [];
     $params = [$memberId, $memberId, $memberId];
 
+    $baseMondayExpr = "date('now', '-' || ((CAST(strftime('%w', 'now') AS INTEGER) + 6) % 7) || ' days')";
     if ($mode === 'past') {
-        $where[] = "cs.start_at < datetime('now')";
+        $where[] = "date(cs.start_at) < " . $baseMondayExpr;
         $where[] = "EXISTS (SELECT 1 FROM session_enrollments se_member WHERE se_member.session_id = cs.id AND se_member.user_id = ?)";
         $params[] = $memberId;
     } else {
-        $where[] = "cs.start_at >= datetime('now')";
+        $where[] = "date(cs.start_at) >= " . $baseMondayExpr;
     }
 
     if ($filters['search'] !== '') {
