@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
@@ -55,11 +56,11 @@ require_once '../templates/header.php';
                     <td>
                         <a href="edit_class.php?id=<?= (int) $class['id'] ?>">Edit</a>
                         |
-                        <a href="delete_class.php?id=<?= (int) $class['id'] ?>"
-                           onclick="return confirm('Delete this class?')"
-                           style="color:red;">
-                            Delete
-                        </a>
+                        <form method="post" action="delete_class.php" style="display:inline;" onsubmit="return confirm('Delete this class?')">
+                            <?= csrf_input() ?>
+                            <input type="hidden" name="id" value="<?= (int) $class['id'] ?>">
+                            <button type="submit" style="background:none;border:none;color:red;cursor:pointer;padding:0;">Delete</button>
+                        </form>
                     </td>
 
                 </tr>

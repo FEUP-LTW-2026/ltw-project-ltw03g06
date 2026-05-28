@@ -1,5 +1,6 @@
 <?php
 require_once 'utils/connection.php';
+require_once 'utils/csrf.php';
 require_once 'utils/schedule.php';
 
 $pageTitle = 'LTW GYM - Schedule';
@@ -12,6 +13,7 @@ $filters = normalizeScheduleFilters($_GET);
 $filterQuery = http_build_query(array_filter($filters, static fn ($value) => $value !== '' && $value !== 0));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     if ($memberId <= 0) {
         $_SESSION['flash_message'] = 'Please log in to enroll, cancel, or review classes.';
         $_SESSION['flash_type'] = 'error';

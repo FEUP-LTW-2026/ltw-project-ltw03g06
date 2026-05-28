@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'utils/connection.php';
+require_once 'utils/csrf.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'trainer') {
     header('Location: index.php');
@@ -14,6 +15,7 @@ $activePage = 'profile';
 $userId = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     $action = $_POST['action'] ?? '';
 
     try {
@@ -132,6 +134,7 @@ require_once 'templates/header.php';
                         
                         <div class="session-time" style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1.5rem;">
                             <form method="POST" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                                <?= csrf_input() ?>
                                 <input type="hidden" name="action" value="change_time">
                                 <input type="hidden" name="session_id" value="<?= $sid ?>">
                                 
@@ -157,6 +160,7 @@ require_once 'templates/header.php';
                             
                             <!-- Formulário fantasma para o botão de cancelar funcionar corretamente -->
                             <form id="cancel-form-<?= $sid ?>" method="POST" style="display: none;">
+                                <?= csrf_input() ?>
                                 <input type="hidden" name="action" value="cancel_class">
                                 <input type="hidden" name="session_id" value="<?= $sid ?>">
                             </form>
@@ -181,6 +185,7 @@ require_once 'templates/header.php';
                                         </div>
                                         
                                         <form method="POST" onsubmit="return confirm('Remove <?= htmlspecialchars($member['name']) ?> from this class?');">
+                                            <?= csrf_input() ?>
                                             <input type="hidden" name="action" value="remove_member">
                                             <input type="hidden" name="session_id" value="<?= $sid ?>">
                                             <input type="hidden" name="member_id" value="<?= $member['id'] ?>">

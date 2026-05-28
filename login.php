@@ -2,6 +2,7 @@
 // 1. Iniciar a sessão e conectar à base de dados
 session_start();
 require_once 'utils/connection.php';
+require_once 'utils/csrf.php';
 
 // Se o utilizador já estiver ligado, redireciona diretamente para o perfil
 if (isset($_SESSION['user_id'])) {
@@ -18,6 +19,7 @@ $error = '';
 
 // 2. Verificar se o formulário de login foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
@@ -93,6 +95,7 @@ require_once 'templates/header.php';
         <p>Log in to access your elite training portal</p>
 
         <form action="" method="post">
+            <?= csrf_input() ?>
             
             <?php if ($error): ?>
                 <div class="alert alert-error" style="color: var(--error); margin-bottom: 1rem; text-align: center; font-weight: bold;">

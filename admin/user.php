@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
@@ -46,11 +47,11 @@ require_once '../templates/header.php';
 
                         |
 
-                        <a href="delete_user.php?id=<?= (int) $user['id'] ?>"
-                           onclick="return confirm('Are you sure you want to delete this user?')"
-                           style="color:red;">
-                            Delete
-                        </a>
+                        <form method="post" action="delete_user.php" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                            <?= csrf_input() ?>
+                            <input type="hidden" name="id" value="<?= (int) $user['id'] ?>">
+                            <button type="submit" style="background:none;border:none;color:red;cursor:pointer;padding:0;">Delete</button>
+                        </form>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'utils/connection.php';
+require_once 'utils/csrf.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -29,6 +30,7 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
@@ -109,6 +111,7 @@ require_once 'templates/header.php';
     </header>
 
     <form action="" method="post" enctype="multipart/form-data" class="profile-container">
+        <?= csrf_input() ?>
         
         <input type="file" id="profile_pic" name="profile_pic" accept="image/*" style="display: none;">
 

@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 
@@ -17,6 +18,7 @@ $trainers = $db->query("
 ")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
 
     $title = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
@@ -70,6 +72,7 @@ require_once '../templates/header.php';
     <?php endif; ?>
 
     <form method="post" class="admin-form">
+        <?= csrf_input() ?>
 
         <label>
             Title *

@@ -220,12 +220,14 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
 
                     <?php if ((int) $session['is_enrolled'] === 1): ?>
                         <form action="<?= htmlspecialchars($formAction, ENT_QUOTES, 'UTF-8') ?>" method="post" class="session-action-form">
+                            <?= csrf_input() ?>
                             <input type="hidden" name="action" value="cancel">
                             <input type="hidden" name="session_id" value="<?= (int) $session['session_id'] ?>">
                             <button type="submit" class="<?= $enrollClass ?>">Cancel enrollment</button>
                         </form>
                     <?php elseif ($remainingSpots > 0): ?>
                         <form action="<?= htmlspecialchars($formAction, ENT_QUOTES, 'UTF-8') ?>" method="post" class="session-action-form">
+                            <?= csrf_input() ?>
                             <input type="hidden" name="action" value="enroll">
                             <input type="hidden" name="session_id" value="<?= (int) $session['session_id'] ?>">
                             <button type="submit" class="<?= $enrollClass ?>"><?= $actionLabel ?></button>
@@ -260,6 +262,7 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
                 </div>
 
                 <form action="<?= htmlspecialchars($formAction, ENT_QUOTES, 'UTF-8') ?>" method="post" class="review-form">
+                    <?= csrf_input() ?>
                     <input type="hidden" name="action" value="review">
                     <input type="hidden" name="session_id" value="<?= (int) $session['session_id'] ?>">
                     <div class="review-grid">

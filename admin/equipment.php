@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 $pageCss = 'admin.css';
@@ -39,11 +40,11 @@ require_once '../templates/header.php';
                 <td><?= htmlspecialchars($item['status']) ?></td>
                 <td>
                     <a href="edit_equipment.php?id=<?= $item['id'] ?>">Edit</a> |
-                    <a href="delete_equipment.php?id=<?= $item['id'] ?>"
-                       onclick="return confirm('Delete this equipment?')"
-                       style="color:red;">
-                        Delete
-                    </a>
+                    <form method="post" action="delete_equipment.php" style="display:inline;" onsubmit="return confirm('Delete this equipment?')">
+                        <?= csrf_input() ?>
+                        <input type="hidden" name="id" value="<?= (int) $item['id'] ?>">
+                        <button type="submit" style="background:none;border:none;color:red;cursor:pointer;padding:0;">Delete</button>
+                    </form>
                 </td>
             </tr>
         <?php endforeach; ?>

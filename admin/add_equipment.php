@@ -1,5 +1,6 @@
 <?php
 require_once '../utils/connection.php';
+require_once '../utils/csrf.php';
 require_once 'auth.php';
 requireAdmin();
 
@@ -10,6 +11,7 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
 
     $name = trim($_POST['name'] ?? '');
     $area = trim($_POST['area'] ?? '');
@@ -49,6 +51,7 @@ require_once '../templates/header.php';
     <?php endif; ?>
 
     <form method="POST" class="admin-form">
+        <?= csrf_input() ?>
 
         <label>
             Name
