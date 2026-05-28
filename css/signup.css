@@ -12,9 +12,6 @@
 
 .signup-form h1 {
     text-align: center;
-    color: var(--text-light);
-    text-transform: uppercase;
-    font-weight: 900;
     letter-spacing: -1px;
     margin-bottom: 0.5rem;
     font-size: 2.2rem;
@@ -25,40 +22,6 @@
     color: var(--text-muted);
     margin-bottom: 2.5rem;
     font-size: 0.9rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-    text-align: left; 
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.6rem;
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--gold);
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    font-size: 0.9rem;
-    color: var(--text-light);
-    font-family: var(--font-main);
-    transition: border-color var(--transition);
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: var(--gold);
 }
 
 .checkbox-group {

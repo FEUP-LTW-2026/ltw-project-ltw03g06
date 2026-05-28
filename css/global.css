@@ -6,26 +6,57 @@
     --text-light: #ffffff;
     --text-muted: #888888; 
     
+    --error: #ff4c4c;
+    --success: #4bb543;
+
+    --space-sm: 0.5rem;
+    --space-md: 1.5rem;
+    --space-lg: 3rem;
+    
     --font-main: 'Noto Sans', 'Inter', 'Segoe UI', sans-serif;
     --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --z-nav: 100;
+    --z-modal: 1000;
 }
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+img, svg {
+    max-width: 100%;
+    display: block; 
+}
+
+input, button, textarea, select {
+    font: inherit; 
+    color: inherit;
+}
+
 body {
     background-color: var(--dark-bg);
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
-                url('../assets/img/pexels-tima-miroshnichenko-6388373.jpg') no-repeat center center fixed;
-    background-size: cover;
     color: var(--text-light);
     font-family: var(--font-main);
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-bottom: 4.75rem;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.78)),
+        url('../assets/img/pexels-tima-miroshnichenko-6388373.jpg') no-repeat center center fixed;
+    background-size: cover;
+    pointer-events: none;
 }
 
 .u-lift {
@@ -38,6 +69,14 @@ body {
 
 .u-lift:hover {
     transform: translateY(-3px);
+}
+
+.section-label {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.7rem;
+    font-weight: 700;
 }
 
 header {
@@ -139,6 +178,13 @@ nav {
     cursor: pointer;
     border: 2px solid transparent;
     transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
 }
 
 .btn--gold {
@@ -161,8 +207,14 @@ nav {
 }
 
 footer {
-    padding: 1.2rem 5%; 
-    background-color: var(--footer-bg);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-nav);
+    padding: 1rem 5%; 
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(14px);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -255,6 +307,99 @@ nav.mobile-open .menu-toggle span::after {
 .nav-links,
 .nav-actions {
     transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+
+:focus-visible {
+    outline: 2px dashed var(--gold);
+    outline-offset: 4px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-light);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+p {
+    line-height: 1.6; 
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    font-size: 0.9rem;
+    color: #ffffff; /* O texto branco que faltava! */
+    font-family: var(--font-main);
+    transition: border-color var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    padding-right: 40px; 
+}
+
+.toggle-pwd-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-pwd-btn:hover {
+    color: var(--gold);
+}
+
+.eye-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: fill var(--transition);
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 900px) {

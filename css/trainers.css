@@ -1,57 +1,56 @@
 
 .trainers-page {
-    padding: 4rem 5%;
-    max-width: 1300px;
+    width: min(96vw, 2400px);
+    padding: 2rem clamp(0.75rem, 1.5vw, 1.5rem) 4rem;
     margin: 0 auto;
 }
 
 .trainers-header {
-    text-align: center;
-    margin-bottom: 4rem;
+    display: grid;
+    gap: 0.75rem;
+    max-width: 760px;
+    margin-bottom: 2rem;
 }
 
 .trainers-header h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -1.5px;
-    margin-bottom: 0.5rem;
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    letter-spacing: -2px;
+    line-height: 0.95;
 }
 
 .trainers-header p {
-    color: white;
-    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
 }
 
 .trainer-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 25px;
-    margin-bottom: 60px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
 }
 
 .trainer-card {
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(180px, 0.9fr) 1.1fr;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
+    border-radius: 6px;
     backdrop-filter: blur(10px);
     transition: transform var(--transition), border-color var(--transition);
 }
 
 .trainer-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     border-color: var(--gold);
 }
 
 .trainer-image {
-    height: 320px;
+    min-height: 100%;
     background-size: cover;
     background-position: center;
-    filter: grayscale(100%);
-    transition: filter var(--transition);
+    filter: grayscale(90%);
 }
 
 .trainer-card:hover .trainer-image {
@@ -59,58 +58,116 @@
 }
 
 .trainer-info {
-    padding: 1.8rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 1.45rem;
+    display: grid;
+    gap: 1rem;
 }
 
-.trainer-info h2 {
-    font-size: 1.3rem;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.8rem;
-}
-
-.trainer-info p {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-}
-
-.trainer-classes {
-    margin-top: auto; 
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-wrap: wrap;
+.trainer-header {
+    display: grid;
     gap: 0.5rem;
 }
 
-.trainer-classes span {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.03);
-    padding: 4px 8px;
-    border-radius: 2px;
-    transition: color var(--transition), background var(--transition);
+.trainer-name-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
 }
 
-.trainer-card:hover .trainer-classes span {
+.trainer-name-row h2 {
+    font-size: 1.45rem;
+    letter-spacing: -0.5px;
+}
+
+.trainer-role {
     color: var(--gold);
-    background: rgba(212, 175, 55, 0.1); 
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
 }
 
-@media (max-width: 1024px) {
-    .trainer-grid { grid-template-columns: repeat(2, 1fr); }
+.trainer-info p {
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-size: 0.92rem;
+}
+
+.trainer-section-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.trainer-specializations,
+.trainer-classes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.trainer-specializations span,
+.trainer-classes span {
+    padding: 0.4rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-muted);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.trainer-details {
+    display: grid;
+    gap: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.trainer-link {
+    justify-self: start;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    background: rgba(212, 175, 55, 0.08);
+    color: var(--text-light);
+    letter-spacing: 1px;
+    font-size: 0.66rem;
+}
+
+.trainer-link:hover {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+@media (max-width: 1200px) {
+    .trainer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1080px) {
+    .trainer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 850px) {
+    .trainer-card {
+        grid-template-columns: 1fr;
+    }
+
+    .trainer-image {
+        min-height: 270px;
+    }
 }
 
 @media (max-width: 700px) {
-    .trainer-grid { grid-template-columns: 1fr; }
-    .trainer-image { height: 280px; }
-}   
+    .trainers-page {
+        padding-inline: 1.25rem;
+    }
+}
