@@ -31,9 +31,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $stmt->fetch();
 
             // 4. Verificar se o utilizador existe e se a password está correta
-            // A função password_verify compara o texto limpo com o hash encriptado
-            if ($user && ($user['password'] === $password || password_verify($password, $user['password']))) {
-                
+            // Use password_verify for hashed passwords. If a legacy plaintext password
+            // is detected, verify equality and immediately rehash it (migration path).
+            $verified = false;
+            if ($user) {
+                $stored = $user['password'];
+                $info = password_get_info($stored);
+                if ($info['algo'] !== 0) {
+                    // Stored value looks like a hash
+                    $verified = password_verify($password, $stored);
+                } else {
+                    // Legacy plaintext fallback: compare and upgrade to a hash
+                    if ($password === $stored) {
+                        $verified = true;
+                        $newHash = password_hash($password, PASSWORD_DEFAULT);
+                        $update = $db->prepare('UPDATE users SET password = ? WHERE id = ?');
+                        $update->execute([$newHash, $user['id']]);
+                        $user['password'] = $newHash;
+                    }
+                }
+            }
+
+            if ($verified) {
                 // 5. Iniciar as variáveis de sessão (o browser "lembra-se" do utilizador)
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['name'];
