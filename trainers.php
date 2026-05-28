@@ -39,7 +39,7 @@ require_once 'templates/header.php';
                     $specializations = array_filter(array_map('trim', explode(',', (string) $trainer['bio'])));
                 }
             ?>
-            <article class="trainer-card">
+            <article class="trainer-card hover-card">
                 <div class="trainer-image" style="background-image: url('<?= htmlspecialchars((string) $trainer['image_url']) ?>');"></div>
                 <div class="trainer-info">
                     <div class="trainer-header">
@@ -51,39 +51,39 @@ require_once 'templates/header.php';
                     </div>
 
                     <div class="trainer-details">
-                        <span class="trainer-section-title">Specializations</span>
+                        <span class="section-label">Specializations</span>
                         <div class="trainer-specializations">
                             <?php if (empty($specializations)): ?>
-                                <span>No specializations listed</span>
+                                <span class="badge">No specializations listed</span>
                             <?php else: ?>
                                 <?php foreach ($specializations as $specialization): ?>
-                                    <span><?= htmlspecialchars($specialization) ?></span>
+                                    <span class="badge"><?= htmlspecialchars($specialization) ?></span>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
                     </div>
 
                     <div class="trainer-details">
-                        <span class="trainer-section-title">Classes taught</span>
+                        <span class="section-label">Classes taught</span>
                         <div class="trainer-classes">
                             <?php if (empty($classes)): ?>
-                                <span>No classes assigned</span>
+                                <span class="badge">No classes assigned</span>
                             <?php else: ?>
                                 <?php foreach ($classes as $class): ?>
-                                    <span><?= htmlspecialchars($class['title']) ?> · <?= htmlspecialchars($class['category']) ?></span>
+                                    <span class="badge"><?= htmlspecialchars($class['title']) ?> &bull; <?= htmlspecialchars($class['category']) ?></span>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </div>
                     </div>
 
                     <div class="trainer-details">
-                        <span class="trainer-section-title">Upcoming sessions</span>
+                        <span class="section-label">Upcoming sessions</span>
                         <div class="trainer-classes">
                             <?php if (empty($upcomingSessions)): ?>
-                                <span>No upcoming sessions</span>
+                                <span class="badge">No upcoming sessions</span>
                             <?php else: ?>
                                 <?php foreach ($upcomingSessions as $session): ?>
-                                    <span><?= htmlspecialchars($session['title']) ?> · <?= htmlspecialchars(date('D j M, H:i', strtotime($session['start_at']))) ?></span>
+                                    <span class="badge"><?= htmlspecialchars($session['title']) ?> &bull; <?= htmlspecialchars(date('D j M, H:i', strtotime($session['start_at']))) ?></span>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </div>

@@ -20,13 +20,13 @@ require_once 'templates/header.php';
 
     <section class="equipment-grid">
         <?php foreach ($equipment as $item): ?>
-            <?php $statusClass = 'equipment-badge--' . $item['status']; ?>
-            <article class="equipment-card">
+            <?php $statusClass = 'badge--' . $item['status']; ?>
+            <article class="equipment-card hover-card">
                 <div class="equipment-card__header">
                     <h2><?= htmlspecialchars($item['name']) ?></h2>
-                    <span class="equipment-badge <?= $statusClass ?>"><?= htmlspecialchars(ucfirst($item['status'])) ?></span>
+                    <span class="badge <?= $statusClass ?>"><?= htmlspecialchars(ucfirst($item['status'])) ?></span>
                 </div>
-                <p class="equipment-area"><?= htmlspecialchars($item['area']) ?></p>
+                <p class="section-label" style="margin-bottom: 1rem;"><?= htmlspecialchars($item['area']) ?></p>
                 <div class="equipment-stats">
                     <div>
                         <span>Total units</span>

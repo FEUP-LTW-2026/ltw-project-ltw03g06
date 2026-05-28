@@ -13,7 +13,6 @@ $activePage = 'profile';
 
 $userId = $_SESSION['user_id'];
 
-// === PROCESSAMENTO DE AÇÕES (CANCELAR, ALTERAR HORA, REMOVER MEMBRO) ===
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
 
@@ -21,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($action === 'cancel_class') {
             $sessionId = $_POST['session_id'] ?? 0;
             
-            // Segurança: Verificar se a aula pertence a este treinador
             $checkStmt = $db->prepare("SELECT c.trainer_id FROM class_sessions cs JOIN classes c ON cs.class_id = c.id WHERE cs.id = ?");
             $checkStmt->execute([$sessionId]);
             if ($checkStmt->fetchColumn() == $userId) {
@@ -36,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $checkStmt = $db->prepare("SELECT c.trainer_id FROM class_sessions cs JOIN classes c ON cs.class_id = c.id WHERE cs.id = ?");
             $checkStmt->execute([$sessionId]);
             if ($checkStmt->fetchColumn() == $userId && !empty($newTime)) {
-                // Converter data do formato HTML (datetime-local) para formato da Base de Dados
                 $formattedTime = date('Y-m-d H:i:s', strtotime($newTime));
                 $updStmt = $db->prepare("UPDATE class_sessions SET start_at = ? WHERE id = ?");
                 $updStmt->execute([$formattedTime, $sessionId]);
@@ -54,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
-        // Fazer refresh à página para evitar re-submissões de formulário ao fazer F5
         header("Location: trainer_dashbord.php");
         exit;
 
@@ -65,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // =========================================================================
 
 try {
-    // Nota: Adicionei "u.id as member_id" para podermos apagar as inscrições corretamente
     $stmt = $db->prepare("
         SELECT cs.id as session_id, c.title as class_name, cs.start_at as start_time, c.duration, cs.room,
                u.id as member_id, u.name as member_name, u.email as member_email
@@ -73,7 +68,7 @@ try {
         JOIN classes c ON cs.class_id = c.id
         LEFT JOIN session_enrollments ce ON cs.id = ce.session_id
         LEFT JOIN users u ON ce.user_id = u.id
-        WHERE c.trainer_id = ?
+        WHERE c.trainer_id = ? AND date(cs.start_at) >= date('now')
         ORDER BY cs.start_at ASC, u.name ASC
     ");
     $stmt->execute([$userId]);
@@ -127,35 +122,53 @@ require_once 'templates/header.php';
         <?php else: ?>
             <div class="sessions-grid">
                 <?php foreach ($sessions as $sid => $session): ?>
-                    <div class="glass-panel session-card" style="position: relative;">
+                    <!-- Adicionada a classe global hover-card -->
+                    <div class="glass-panel session-card hover-card">
                         
-                        <form method="POST" style="position: absolute; top: 1.5rem; right: 1.5rem;" onsubmit="return confirm('Are you sure you want to cancel this entire class? This cannot be undone.');">
-                            <input type="hidden" name="action" value="cancel_class">
-                            <input type="hidden" name="session_id" value="<?= $sid ?>">
-                            <button type="submit" class="btn btn--outline" style="color: #ff4c4c; border-color: #ff4c4c; padding: 0.5rem 1rem; font-size: 0.8rem;">Cancel Class</button>
-                        </form>
-
-                        <div class="session-header" style="margin-bottom: 1rem; padding-right: 7rem;">
+                        <div class="session-header" style="margin-bottom: 1.5rem; padding-right: 0;">
                             <h2><?= htmlspecialchars($session['class_name']) ?></h2>
-                            <span class="room-badge"><?= htmlspecialchars($session['room']) ?></span>
+                            <span class="badge badge--gold" style="white-space: nowrap;"><?= htmlspecialchars($session['room']) ?></span>
                         </div>
                         
-                        <div class="session-time" style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
-                            <form method="POST" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                        <div class="session-time" style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1.5rem;">
+                            <form method="POST" style="display: flex; flex-direction: column; gap: 0.8rem;">
                                 <input type="hidden" name="action" value="change_time">
                                 <input type="hidden" name="session_id" value="<?= $sid ?>">
-                                <label style="font-size: 0.9rem; color: #ccc;">Start Time:</label>
-                                <input type="datetime-local" name="new_time" required 
-                                       value="<?= date('Y-m-d\TH:i', strtotime($session['start_time'])) ?>"
-                                       style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.4rem; border-radius: 4px; font-family: inherit;">
-                                <button type="submit" class="btn btn--gold" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Save Time</button>
+                                
+                                <div>
+                                    <label style="font-size: 0.75rem; color: var(--gold); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; display: block; margin-bottom: 0.4rem;">Start Time</label>
+                                    <input type="datetime-local" name="new_time" required 
+                                           value="<?= date('Y-m-d\TH:i', strtotime($session['start_time'])) ?>"
+                                           style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 0.6rem; border-radius: 4px; font-family: inherit;">
+                                </div>
+                                
+                                <div style="display: flex; gap: 0.5rem; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+                                    <button type="submit" class="btn btn--gold" style="padding: 0.6rem 1rem; font-size: 0.75rem; min-height: auto; flex-grow: 1;">Save Time</button>
+                                    
+                                    <!-- O botão Cancelar passou para aqui e perdeu o position absolute -->
+                                    <button type="button" 
+                                            class="btn btn--outline" 
+                                            style="color: #ff4c4c; border-color: rgba(255, 76, 76, 0.4); padding: 0.6rem 1rem; font-size: 0.75rem; min-height: auto; flex-grow: 1;"
+                                            onclick="if(confirm('Are you sure you want to cancel this entire class? This cannot be undone.')) { document.getElementById('cancel-form-<?= $sid ?>').submit(); }">
+                                        Cancel Class
+                                    </button>
+                                </div>
                             </form>
-                            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #888;">
+                            
+                            <!-- Formulário fantasma para o botão de cancelar funcionar corretamente -->
+                            <form id="cancel-form-<?= $sid ?>" method="POST" style="display: none;">
+                                <input type="hidden" name="action" value="cancel_class">
+                                <input type="hidden" name="session_id" value="<?= $sid ?>">
+                            </form>
+
+                            <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
                                 Ends at: <?= htmlspecialchars(date('H:i', strtotime($session['end_time']))) ?>
                             </div>
                         </div>
                         
-                        <h3 class="roster-title">Enrolled Members (<?= count($session['members']) ?>)</h3>
+                        <!-- Substituição pela class global section-label -->
+                        <h3 class="section-label" style="margin-bottom: 1rem;">Enrolled Members (<?= count($session['members']) ?>)</h3>
+                        
                         <?php if (empty($session['members'])): ?>
                             <p class="empty-roster">No members enrolled yet.</p>
                         <?php else: ?>
@@ -171,7 +184,7 @@ require_once 'templates/header.php';
                                             <input type="hidden" name="action" value="remove_member">
                                             <input type="hidden" name="session_id" value="<?= $sid ?>">
                                             <input type="hidden" name="member_id" value="<?= $member['id'] ?>">
-                                            <button type="submit" style="background: none; border: none; color: #ff4c4c; text-decoration: underline; cursor: pointer; font-size: 0.85rem;">Remove</button>
+                                            <button type="submit" style="background: none; border: none; color: #ff4c4c; text-decoration: none; cursor: pointer; font-size: 0.85rem;">Remove</button>
                                         </form>
                                     </li>
                                 <?php endforeach; ?>

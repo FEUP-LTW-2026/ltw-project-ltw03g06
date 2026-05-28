@@ -1,3 +1,5 @@
+/* css/trainer_dashboard.css */
+
 .dashboard-page {
     width: 100%;
     padding-bottom: 5rem;
@@ -11,58 +13,54 @@
 
 .sessions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+    /* Reduzimos de 350px para 280px para caberem 3 a 4 cartões por linha */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; 
 }
 
+/* === CARTÕES DAS AULAS (Mais quadrados e compactos) === */
 .session-card {
-    padding: 2rem;
+    padding: 1.25rem; /* Margens interiores ligeiramente mais pequenas */
     display: flex;
     flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px; /* Cantos um bocadinho mais redondos */
+    backdrop-filter: blur(10px);
+    min-height: 380px; /* Força um aspeto mais "bloco/quadrado" em vez de elástico */
 }
 
 .session-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 1rem;
     margin-bottom: 0.5rem;
+    padding-right: 0; /* Removemos o espaçamento antigo do botão */
 }
 
 .session-header h2 {
-    font-size: 1.5rem;
-    color: var(--gold);
+    font-size: 1.25rem; /* Letra do título um bocadinho mais pequena */
+    letter-spacing: -0.4px;
+    color: var(--text-light);
+    line-height: 1.1;
     margin: 0;
 }
 
-.room-badge {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--gold);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
 .session-time {
-    color: var(--text-light);
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem; /* Letra da hora mais compacta */
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.roster-title {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-}
-
+/* === LISTA DE ALUNOS (ROSTER) === */
 .empty-roster {
     color: var(--text-muted);
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .roster-list {
@@ -71,14 +69,16 @@
     margin: 0;
     flex-grow: 1;
     overflow-y: auto;
-    max-height: 250px;
+    max-height: 180px; /* Mais curto para manter o cartão no formato quadrado */
+    padding-right: 0.5rem;
 }
 
 .roster-list li {
     display: flex;
-    flex-direction: column;
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .roster-list li:last-child {
@@ -86,24 +86,48 @@
 }
 
 .roster-list li strong {
-    color: #ffffff;
-    font-size: 0.95rem;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.2rem;
 }
 
 .roster-list li span {
     color: var(--text-muted);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    display: block;
 }
 
+/* === ESTILIZAÇÃO DO SCROLLBAR === */
 .roster-list::-webkit-scrollbar {
-    width: 6px;
+    width: 5px; /* Barra de scroll ligeiramente mais fina */
 }
 
 .roster-list::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
 }
 
 .roster-list::-webkit-scrollbar-thumb {
-    background: var(--gold);
+    background: rgba(212, 175, 55, 0.4);
     border-radius: 3px;
+}
+
+.roster-list::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+}
+
+/* === RESPONSIVIDADE PARA ECRÃS MENORES === */
+@media (max-width: 950px) {
+    .sessions-grid {
+        /* Força a exibir exatamente 2 por linha em ecrãs médios/tablets */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .sessions-grid {
+        /* Passa a 1 por linha nos telemóveis para conseguir ler tudo */
+        grid-template-columns: 1fr;
+    }
 }

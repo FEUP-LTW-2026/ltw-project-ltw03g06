@@ -175,7 +175,7 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
 
     ob_start();
     ?>
-    <article class="session-card <?= $mode === 'past' ? 'session-card--past' : '' ?>">
+    <article class="session-card hover-card <?= $mode === 'past' ? 'session-card--past' : '' ?>">
         <div class="session-image" style="background-image: url('<?= htmlspecialchars((string) $session['image_url'], ENT_QUOTES, 'UTF-8') ?>');"></div>
         <div class="session-content">
             <div class="session-kicker">
@@ -186,10 +186,10 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
             <p><?= htmlspecialchars($session['description'], ENT_QUOTES, 'UTF-8') ?></p>
 
             <div class="session-tags">
-                <span><?= htmlspecialchars((string) $session['category'], ENT_QUOTES, 'UTF-8') ?></span>
-                <span><?= htmlspecialchars((string) $session['intensity'], ENT_QUOTES, 'UTF-8') ?></span>
-                <span><?= htmlspecialchars((string) $session['duration'], ENT_QUOTES, 'UTF-8') ?> min</span>
-                <span><?= htmlspecialchars((string) $session['room'], ENT_QUOTES, 'UTF-8') ?></span>
+                <span class="badge"><?= htmlspecialchars((string) $session['category'], ENT_QUOTES, 'UTF-8') ?></span>
+                <span class="badge"><?= htmlspecialchars((string) $session['intensity'], ENT_QUOTES, 'UTF-8') ?></span>
+                <span class="badge"><?= htmlspecialchars((string) $session['duration'], ENT_QUOTES, 'UTF-8') ?> min</span>
+                <span class="badge"><?= htmlspecialchars((string) $session['room'], ENT_QUOTES, 'UTF-8') ?></span>
             </div>
 
             <?php if ($mode === 'upcoming'): ?>
@@ -213,7 +213,7 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
                 </dl>
 
                 <div class="session-footer">
-                    <span class="session-badge <?= $remainingSpots === 0 ? 'session-badge--full' : '' ?>">
+                    <span class="badge <?= $remainingSpots === 0 ? 'badge--full' : 'badge--available' ?>">
                         <?= $remainingSpots === 0 ? 'Full' : $remainingSpots . ' spots left' ?>
                     </span>
 
@@ -254,7 +254,7 @@ function renderScheduleSessionCard(array $session, string $mode = 'upcoming', st
                 </dl>
 
                 <div class="session-footer session-footer--past">
-                    <span class="session-badge session-badge--archived">Archived</span>
+                    <span class="badge badge--archived">Archived</span>
                     <span class="session-lock">Past session</span>
                 </div>
 

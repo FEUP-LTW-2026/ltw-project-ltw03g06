@@ -38,11 +38,6 @@
     transition: transform var(--transition), border-color var(--transition);
 }
 
-.equipment-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-}
-
 .equipment-card__header {
     display: flex;
     flex-wrap: wrap;
@@ -55,15 +50,6 @@
 .equipment-card h2 {
     font-size: 1.4rem;
     letter-spacing: -0.4px;
-}
-
-.equipment-area {
-    color: var(--gold);
-    text-transform: uppercase;
-    font-size: 0.68rem;
-    letter-spacing: 1.3px;
-    font-weight: 700;
-    margin-bottom: 1rem;
 }
 
 .equipment-stats {
