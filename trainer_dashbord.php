@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'trainer') {
 }
 
 $pageTitle = 'LTW GYM - Trainer Dashboard';
-$pageCss = 'dashboard.css';
+$pageCss = 'trainer_dashboard.css';
 $activePage = 'profile';
 
 $userId = $_SESSION['user_id'];

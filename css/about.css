@@ -91,9 +91,6 @@
 
     object-fit: cover;
 
-    filter: grayscale(100%);
-
-    transition: filter var(--transition);
 }
 
 .about-image img:hover {
