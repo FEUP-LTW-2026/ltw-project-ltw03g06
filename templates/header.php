@@ -35,8 +35,8 @@
                 <li><a href="/trainers.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'trainers' ? ' active' : '' ?>">Trainers</a></li>
                 <li><a href="/classes.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'classes' ? ' active' : '' ?>">Schedule</a></li>
                 <li><a href="/equipment.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'equipment' ? ' active' : '' ?>">Equipment</a></li>
-                <li><a href="/about.html" class="nav-link u-lift">About Us</a></li>
-                <li><a href="/contact.html" class="nav-link u-lift">Contact</a></li>
+                <li><a href="/about.html" class="nav-link u-lift<?= isset($activePage) && $activePage === 'about' ? ' active' : '' ?>">About Us</a></li>
+                <li><a href="/contact.html" class="nav-link u-lift<?= isset($activePage) && $activePage === 'contact' ? ' active' : '' ?>">Contact</a></li>
             </ul>
 
             <div class="nav-actions">
