@@ -10,8 +10,7 @@ require_once 'templates/header.php';
 
     <section class="about-content">
 
-        <div class="about-text">
-
+        <article class="about-text">
             <span class="section-tag">ABOUT LTW</span>
 
             <h1>
@@ -25,8 +24,7 @@ require_once 'templates/header.php';
                 designed to help every athlete reach their highest level.
             </p>
 
-            <div class="about-stats">
-
+            <section class="about-stats">
                 <div class="stat-box">
                     <h2>10+</h2>
                     <span>Years</span>
@@ -41,13 +39,12 @@ require_once 'templates/header.php';
                     <h2>8K+</h2>
                     <span>Members</span>
                 </div>
+            </section>
+        </article>
 
-            </div>
-        </div>
-
-        <div class="about-image">
+        <figure class="about-image">
             <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gym">
-        </div>
+        </figure>
 
     </section>
 

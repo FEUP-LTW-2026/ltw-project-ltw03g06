@@ -146,15 +146,16 @@ require_once 'templates/header.php';
         <section class="profile-card member-settings glass-panel">
             
             <?php if ($error): ?>
-                <div class="alert alert-error" style="color: var(--error); padding: 1rem; border: 1px solid var(--error); background: rgba(255, 76, 76, 0.1); border-radius: 4px; margin-bottom: 2rem; font-weight: 600; text-align: center;"><?= htmlspecialchars($error) ?></div>
+                <div role="alert" class="alert alert-error" style="color: var(--error); padding: 1rem; border: 1px solid var(--error); background: rgba(255, 76, 76, 0.1); border-radius: 4px; margin-bottom: 2rem; font-weight: 600; text-align: center;"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
             
             <?php if ($success): ?>
-                <div class="alert alert-success" style="color: var(--success); padding: 1rem; border: 1px solid var(--success); background: rgba(75, 181, 67, 0.1); border-radius: 4px; margin-bottom: 2rem; font-weight: 600; text-align: center;"><?= htmlspecialchars($success) ?></div>
+                <div role="alert" class="alert alert-success" style="color: var(--success); padding: 1rem; border: 1px solid var(--success); background: rgba(75, 181, 67, 0.1); border-radius: 4px; margin-bottom: 2rem; font-weight: 600; text-align: center;"><?= htmlspecialchars($success) ?></div>
             <?php endif; ?>
 
-            <h3 class="form-section-title">Personal Information</h3>
-            <div class="form-grid">
+            <fieldset class="form-grid" style="border: none; padding: 0; margin: 0;">
+                <legend class="form-section-title">Personal Information</legend>
+                
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required value="<?= htmlspecialchars($user['name']) ?>">
@@ -183,11 +184,11 @@ require_once 'templates/header.php';
                         <option value="other" <?= ($user['gender'] === 'other') ? 'selected' : '' ?>>Other</option>
                     </select>
                 </div>
-            </div>
+            </fieldset>
 
             <?php if ($user['role'] === 'trainer'): ?>
-            <h3 class="form-section-title">Professional Profile</h3>
-            <div class="form-grid" style="grid-template-columns: 1fr;">
+            <fieldset class="form-grid" style="grid-template-columns: 1fr; border: none; padding: 0; margin: 0; margin-top: 2rem;">
+                <legend class="form-section-title">Professional Profile</legend>
                 <div class="form-group">
                     <label for="specializations">Specializations</label>
                     <input type="text" id="specializations" name="specializations" value="<?= htmlspecialchars($user['specializations'] ?? '') ?>">
@@ -196,21 +197,23 @@ require_once 'templates/header.php';
                     <label for="bio">Biography & Certifications</label>
                     <textarea id="bio" name="bio" rows="4" style="width: 100%; padding: 1rem; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px; color: #ffffff; font-family: var(--font-main); resize: vertical;"><?= htmlspecialchars($user['bio'] ?? '') ?></textarea>
                 </div>
-            </div>
+            </fieldset>
             <?php endif; ?>
 
-            <h3 class="form-section-title">Security & Password</h3>
-            <div class="form-group">
-                <label for="new_password">New Password</label>
-                <div class="password-wrapper">
-                    <input type="password" id="new_password" name="new_password" placeholder="Leave blank to keep current password">
-                    <button type="button" id="togglePassword" class="icon-btn toggle-pwd-btn" aria-label="Show password">
-                        <svg viewBox="0 0 24 24" class="eye-icon">
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                        </svg>
-                    </button>
+            <fieldset style="border: none; padding: 0; margin: 0; margin-top: 2rem;">
+                <legend class="form-section-title">Security & Password</legend>
+                <div class="form-group">
+                    <label for="new_password">New Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="new_password" name="new_password" placeholder="Leave blank to keep current password">
+                        <button type="button" id="togglePassword" class="icon-btn toggle-pwd-btn" aria-label="Show password">
+                            <svg viewBox="0 0 24 24" class="eye-icon">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </fieldset>
 
             <div class="form-actions">
                 <button type="submit" class="btn btn--gold u-lift">Save Changes</button>
