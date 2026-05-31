@@ -89,13 +89,13 @@
     }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 768px) {
     .equipment-grid {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 500px) {
     .equipment-page {
         padding-inline: 1.25rem;
     }

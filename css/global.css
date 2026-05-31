@@ -492,6 +492,7 @@ input:focus, select:focus, textarea:focus {
         flex-wrap: wrap;            
         justify-content: space-between;
         align-items: center;
+        position: relative; /* Garante que o menu fica alinhado com a barra */
     }
 
     .menu-toggle {
@@ -506,7 +507,7 @@ input:focus, select:focus, textarea:focus {
         order: 3;
     }
 
-    nav.mobile-open .nav-links,
+   nav.mobile-open .nav-links,
     nav.mobile-open .nav-actions {
         display: flex;
         flex-direction: column;   
@@ -514,19 +515,23 @@ input:focus, select:focus, textarea:focus {
         opacity: 1;
         max-height: 500px;
         margin-top: 1rem;
+        background: rgba(10, 10, 10, 0.95);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
     .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
-        margin-top: 1rem;
+        gap: 1.2rem;
     }
 
     .nav-actions {
-        justify-content: center;
         gap: 1rem;
-        margin-top: 1rem;
+        margin-top: 0;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        width: 100%;
     }
 
     .nav-actions .nav-link span {

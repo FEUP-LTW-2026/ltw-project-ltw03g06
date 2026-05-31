@@ -290,19 +290,16 @@
     background: rgba(255, 255, 255, 0.03);
 }
 
+/* === RESPONSIVIDADE === */
 @media (max-width: 1200px) {
     .sessions-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 900px) {
     .filter-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .sessions-grid {
-        grid-template-columns: 1fr;
     }
 }
 
@@ -312,7 +309,8 @@
     }
 
     .filter-grid,
-    .session-meta {
+    .session-meta,
+    .sessions-grid {
         grid-template-columns: 1fr;
     }
 

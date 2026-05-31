@@ -8,7 +8,6 @@ requireAdmin();
 $pageCss = 'admin.css';
 $pageTitle = "Admin Dashboard";
 
-
 $totalUsers = (int) $db->query("SELECT COUNT(*) FROM users")->fetchColumn();
 $totalTrainers = (int) $db->query("SELECT COUNT(*) FROM users WHERE role = 'trainer'")->fetchColumn();
 $totalClasses = (int) $db->query("SELECT COUNT(*) FROM classes")->fetchColumn();
@@ -89,7 +88,6 @@ require_once '../templates/header.php';
     <h1>Admin Dashboard</h1>
 
     <div class="admin-grid">
-
         <div class="admin-card">
             <h2><?= $totalUsers ?></h2>
             <p>Users</p>
@@ -109,10 +107,9 @@ require_once '../templates/header.php';
             <h2><?= $totalEquipment ?></h2>
             <p>Equipment</p>
         </div>
-
     </div>
 
-    <section class="admin-grid" style="margin-top: 2rem;">
+    <section class="admin-grid">
         <div class="admin-card">
             <h2><?= $activeMembersLast30 ?></h2>
             <p>Active Members (30d)</p>
@@ -134,12 +131,9 @@ require_once '../templates/header.php';
         </div>
     </section>
 
-    <section class="admin-actions" style="margin-top: 3rem;">
-
+    <section class="admin-actions">
         <h2>Quick Actions</h2>
-
-        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
-
+        <div class="admin-actions-grid">
             <a class="btn btn--gold" href="user.php">Manage Users</a>
             <a class="btn btn--gold" href="create_user.php">Create User</a>
 
@@ -148,115 +142,107 @@ require_once '../templates/header.php';
 
             <a class="btn btn--gold" href="equipment.php">Manage Equipment</a>
             <a class="btn btn--gold" href="add_equipment.php">Add Equipment</a>
-
         </div>
-
     </section>
 
-    <section style="margin-top: 3rem;">
-
+    <section>
         <h2>Most Popular Classes</h2>
-
-        <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>Class</th>
-                    <th>Enrollments</th>
-                    <th>Avg. Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($popularClasses as $class): ?>
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
                     <tr>
-                        <td><?= htmlspecialchars($class['title']) ?></td>
-                        <td><?= (int)$class['enrollments'] ?></td>
-                        <td><?= $class['average_rating'] === null ? '—' : htmlspecialchars($class['average_rating']) ?></td>
+                        <th>Class</th>
+                        <th>Enrollments</th>
+                        <th>Avg. Rating</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    <?php foreach ($popularClasses as $class): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($class['title']) ?></td>
+                            <td><?= (int)$class['enrollments'] ?></td>
+                            <td><?= $class['average_rating'] === null ? '—' : htmlspecialchars($class['average_rating']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section style="margin-top: 3rem;">
-
+    <section>
         <h2>Equipment Usage</h2>
-
-        <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>Equipment</th>
-                    <th>Total Units</th>
-                    <th>Available</th>
-                    <th>Usage</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($equipmentUsageData as $item): ?>
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
                     <tr>
-                        <td><?= htmlspecialchars($item['name']) ?></td>
-                        <td><?= (int)$item['total_units'] ?></td>
-                        <td><?= (int)$item['available_units'] ?></td>
-                        <td><?= htmlspecialchars($item['usage_pct']) ?>%</td>
+                        <th>Equipment</th>
+                        <th>Total Units</th>
+                        <th>Available</th>
+                        <th>Usage</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    <?php foreach ($equipmentUsageData as $item): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($item['name']) ?></td>
+                            <td><?= (int)$item['total_units'] ?></td>
+                            <td><?= (int)$item['available_units'] ?></td>
+                            <td><?= htmlspecialchars($item['usage_pct']) ?>%</td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section style="margin-top: 3rem;">
-
+    <section>
         <h2>Recent Users</h2>
-
-        <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach ($recentUsers as $user): ?>
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
                     <tr>
-                        <td><?= (int)$user['id'] ?></td>
-                        <td><?= htmlspecialchars($user['name']) ?></td>
-                        <td><?= htmlspecialchars($user['email']) ?></td>
-                        <td><?= htmlspecialchars($user['role']) ?></td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    <?php foreach ($recentUsers as $user): ?>
+                        <tr>
+                            <td><?= (int)$user['id'] ?></td>
+                            <td><?= htmlspecialchars($user['name']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= htmlspecialchars($user['role']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 
-    <section style="margin-top: 3rem;">
-
+    <section>
         <h2>Recent Classes</h2>
-
-        <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <?php foreach ($recentClasses as $class): ?>
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
                     <tr>
-                        <td><?= (int)$class['id'] ?></td>
-                        <td><?= htmlspecialchars($class['title']) ?></td>
-                        <td><?= htmlspecialchars($class['category']) ?></td>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Category</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    <?php foreach ($recentClasses as $class): ?>
+                        <tr>
+                            <td><?= (int)$class['id'] ?></td>
+                            <td><?= htmlspecialchars($class['title']) ?></td>
+                            <td><?= htmlspecialchars($class['category']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 
 </main>

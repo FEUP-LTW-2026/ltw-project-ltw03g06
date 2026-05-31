@@ -172,4 +172,13 @@
     .profile-card {
         padding: 1.5rem;
     }
+
+    .avatar-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-hero h1 {
+        font-size: 1.8rem;
+    }
 }
