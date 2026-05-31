@@ -16,7 +16,7 @@
     font-size: clamp(2.5rem, 7vw, 5rem);
     margin-bottom: 2rem;
     line-height: 1;
-    letter-spacing: -1px; /* Tighter heading letters look professional */
+    letter-spacing: -1px; 
 }
 
 .hero-content p {

@@ -13,7 +13,6 @@ $activePage = 'profile';
 
 $userId = $_SESSION['user_id'];
 
-// === PROCESSAMENTO DE AÇÕES (CANCELAR, ALTERAR HORA, REMOVER MEMBRO) ===
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
 
@@ -62,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error updating data: " . $e->getMessage());
     }
 }
-// =========================================================================
 
 try {
     // Nota: Adicionei "u.id as member_id" para podermos apagar as inscrições corretamente

@@ -430,7 +430,6 @@ p {
     border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-/* Cores de Estado Globais (Aulas e Equipamento) */
 .badge--available, .badge--success {
     background: rgba(75, 181, 67, 0.14);
     color: #c4f3bf;

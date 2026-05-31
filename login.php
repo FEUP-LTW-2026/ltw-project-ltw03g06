@@ -1,5 +1,4 @@
 <?php
-// 1. Iniciar a sessão e conectar à base de dados
 session_start();
 require_once 'utils/connection.php';
 require_once 'utils/csrf.php';
@@ -11,13 +10,11 @@ if (isset($_SESSION['user_id'])) {
 }
 
 $pageTitle = 'LTW GYM - Login';
-// Reutilizamos o teu CSS de signup para manter o mesmo estilo visual limpo
 $pageCss = 'signup.css'; 
 $activePage = 'login';
 
 $error = '';
 
-// 2. Verificar se o formulário de login foi submetido
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_validate_or_die();
     $email = trim($_POST['email'] ?? '');
@@ -27,26 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please fill in all fields.';
     } else {
         try {
-            // 3. Procurar o utilizador pelo email
             $stmt = $db->prepare('SELECT * FROM users WHERE email = ?');
             $stmt->execute([$email]);
             $user = $stmt->fetch();
 
-            // 4. Verificar se o utilizador existe e se a password está correta
-            // Use password_verify for hashed passwords. If a legacy plaintext password
-            // is detected, verify equality and immediately rehash it (migration path).
             $verified = false;
             if ($user) {
                 $stored = $user['password'];
                 $info = password_get_info($stored);
-                // Detect whether the stored value is a password hash. Some PHP
-                // builds return NULL for 'algo' when the value is not a hash,
-                // so check algoName for 'unknown' which indicates plaintext.
+
                 if (!empty($info['algoName']) && $info['algoName'] !== 'unknown') {
-                    // Stored value looks like a hash
                     $verified = password_verify($password, $stored);
                 } else {
-                    // Legacy plaintext fallback: compare and upgrade to a hash
                     if ($password === $stored) {
                         $verified = true;
                         $newHash = password_hash($password, PASSWORD_DEFAULT);
@@ -58,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if ($verified) {
-                // 5. Iniciar as variáveis de sessão (o browser "lembra-se" do utilizador)
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['name'];
                 $_SESSION['user_role'] = $user['role']; // útil para permissões de admin/treinador
