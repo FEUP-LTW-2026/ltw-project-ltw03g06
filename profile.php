@@ -112,7 +112,7 @@ require_once 'templates/header.php';
         <p>Manage your personal details, membership status, and security preferences.</p>
         
         <?php if ($user['role'] === 'trainer'): ?>
-            <a href="trainer_dashbord.php" class="btn btn--gold u-lift" style="margin-top: 1.5rem; display: inline-block;">Manage Schedule & Roster</a>
+            <a href="trainer_dashboard.php" class="btn btn--gold u-lift" style="margin-top: 1.5rem; display: inline-block;">Manage Schedule & Roster</a>
         <?php endif; ?>
         
         <?php if ($user['role'] === 'admin'): ?>

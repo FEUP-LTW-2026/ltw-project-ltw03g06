@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'utils/connection.php';
+require_once 'utils/csrf.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'trainer') {
     header('Location: index.php');
@@ -14,6 +15,7 @@ $activePage = 'profile';
 $userId = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    csrf_validate_or_die();
     $action = $_POST['action'] ?? '';
 
     try {
@@ -54,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         // Fazer refresh à página para evitar re-submissões de formulário ao fazer F5
-        header("Location: trainer_dashbord.php");
+        header("Location: trainer_dashboard.php");
         exit;
 
     } catch (PDOException $e) {
@@ -300,6 +302,7 @@ require_once 'templates/header.php';
                     <div class="glass-panel session-card" style="position: relative;">
                         
                         <form method="POST" style="position: absolute; top: 1.5rem; right: 1.5rem;" onsubmit="return confirm('Are you sure you want to cancel this entire class? This cannot be undone.');">
+                            <?= csrf_input() ?>
                             <input type="hidden" name="action" value="cancel_class">
                             <input type="hidden" name="session_id" value="<?= $sid ?>">
                             <button type="submit" class="btn" style="background: rgba(255, 76, 76, 0.1); color: #ff9b9b; border: 1px solid rgba(255, 76, 76, 0.3); padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 4px;">Cancel Class</button>
@@ -312,6 +315,7 @@ require_once 'templates/header.php';
                         
                         <div class="session-time" style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
                             <form method="POST" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <?= csrf_input() ?>
                                 <input type="hidden" name="action" value="change_time">
                                 <input type="hidden" name="session_id" value="<?= $sid ?>">
                                 <label style="font-size: 0.9rem; color: #ccc;">Start Time:</label>
@@ -338,6 +342,7 @@ require_once 'templates/header.php';
                                         </div>
                                         
                                         <form method="POST" onsubmit="return confirm('Remove <?= htmlspecialchars($member['name']) ?> from this class?');">
+                                            <?= csrf_input() ?>
                                             <input type="hidden" name="action" value="remove_member">
                                             <input type="hidden" name="session_id" value="<?= $sid ?>">
                                             <input type="hidden" name="member_id" value="<?= $member['id'] ?>">
