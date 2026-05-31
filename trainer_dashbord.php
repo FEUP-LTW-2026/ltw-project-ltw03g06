@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Error updating data: " . $e->getMessage());
     }
 }
-// =========================================================================
 
 try {
     $stmt = $db->prepare("
@@ -102,6 +101,71 @@ try {
             ];
         }
     }
+
+    $statsStmt = $db->prepare(
+        "SELECT
+            COUNT(DISTINCT c.id) AS total_classes,
+            COUNT(DISTINCT cs.id) AS total_sessions,
+            COUNT(se.user_id) AS total_enrollments,
+            ROUND(AVG(cr.rating), 1) AS average_rating
+        FROM class_sessions cs
+        JOIN classes c ON cs.class_id = c.id
+        LEFT JOIN session_enrollments se ON cs.id = se.session_id
+        LEFT JOIN class_reviews cr ON cs.id = cr.session_id
+        WHERE c.trainer_id = ?"
+    );
+    $statsStmt->execute([$userId]);
+    $trainerStats = $statsStmt->fetch();
+    $trainerStats['total_classes'] = (int)($trainerStats['total_classes'] ?? 0);
+    $trainerStats['total_sessions'] = (int)($trainerStats['total_sessions'] ?? 0);
+    $trainerStats['total_enrollments'] = (int)($trainerStats['total_enrollments'] ?? 0);
+    $trainerStats['average_rating'] = $trainerStats['average_rating'] === null ? 'N/A' : $trainerStats['average_rating'];
+
+    $sessionAnalyticsStmt = $db->prepare(
+        "SELECT cs.id AS session_id, c.title AS class_name, cs.start_at, cs.capacity, cs.room,
+               COUNT(DISTINCT se.user_id) AS enrolled,
+               ROUND(100.0 * COUNT(DISTINCT se.user_id) / cs.capacity, 1) AS occupancy_pct,
+               ROUND(AVG(cr.rating), 1) AS avg_rating
+        FROM class_sessions cs
+        JOIN classes c ON cs.class_id = c.id
+        LEFT JOIN session_enrollments se ON cs.id = se.session_id
+        LEFT JOIN class_reviews cr ON cs.id = cr.session_id
+        WHERE c.trainer_id = ?
+        GROUP BY cs.id
+        ORDER BY cs.start_at ASC"
+    );
+    $sessionAnalyticsStmt->execute([$userId]);
+    $sessionAnalytics = $sessionAnalyticsStmt->fetchAll();
+
+    $classSummaryStmt = $db->prepare(
+        "SELECT c.title AS class_name,
+                COUNT(DISTINCT cs.id) AS session_count,
+                COUNT(se.user_id) AS total_enrollments,
+                ROUND(AVG(cr.rating), 1) AS average_rating
+        FROM classes c
+        LEFT JOIN class_sessions cs ON c.id = cs.class_id
+        LEFT JOIN session_enrollments se ON cs.id = se.session_id
+        LEFT JOIN class_reviews cr ON cs.id = cr.session_id
+        WHERE c.trainer_id = ?
+        GROUP BY c.id
+        ORDER BY total_enrollments DESC
+        LIMIT 5"
+    );
+    $classSummaryStmt->execute([$userId]);
+    $classSummaries = $classSummaryStmt->fetchAll();
+
+    $reviewsStmt = $db->prepare(
+        "SELECT cr.rating, cr.review, cr.created_at, u.name AS member_name, c.title AS class_name
+        FROM class_reviews cr
+        JOIN users u ON cr.user_id = u.id
+        JOIN class_sessions cs ON cr.session_id = cs.id
+        JOIN classes c ON cs.class_id = c.id
+        WHERE c.trainer_id = ?
+        ORDER BY cr.created_at DESC
+        LIMIT 5"
+    );
+    $reviewsStmt->execute([$userId]);
+    $recentReviews = $reviewsStmt->fetchAll();
 } catch (PDOException $e) {
     die($e->getMessage());
 }
@@ -117,6 +181,113 @@ require_once 'templates/header.php';
     </header>
 
     <div class="dashboard-container">
+
+        <section class="analytics-panel">
+            <h2>Trainer Analytics</h2>
+
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <span class="metric-label">Classes Assigned</span>
+                    <strong><?= $trainerStats['total_classes'] ?></strong>
+                </div>
+                <div class="analytics-card">
+                    <span class="metric-label">Scheduled Sessions</span>
+                    <strong><?= $trainerStats['total_sessions'] ?></strong>
+                </div>
+                <div class="analytics-card">
+                    <span class="metric-label">Total Attendance</span>
+                    <strong><?= $trainerStats['total_enrollments'] ?></strong>
+                </div>
+                <div class="analytics-card">
+                    <span class="metric-label">Average Rating</span>
+                    <strong><?= htmlspecialchars($trainerStats['average_rating']) ?></strong>
+                </div>
+            </div>
+
+            <div class="analytics-tables">
+                <div class="analytics-table-panel">
+                    <h3>Upcoming Sessions</h3>
+                    <?php if (empty($sessionAnalytics)): ?>
+                        <p style="color: var(--text-muted);">No scheduled sessions available yet.</p>
+                    <?php else: ?>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>Session</th>
+                                    <th>Start</th>
+                                    <th>Enrolled</th>
+                                    <th>Capacity</th>
+                                    <th>Occupancy</th>
+                                    <th>Avg. Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($sessionAnalytics as $session): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($session['class_name']) ?></td>
+                                        <td><?= htmlspecialchars(date('Y-m-d H:i', strtotime($session['start_at']))) ?></td>
+                                        <td><?= (int)$session['enrolled'] ?></td>
+                                        <td><?= (int)$session['capacity'] ?></td>
+                                        <td><?= htmlspecialchars($session['occupancy_pct']) ?>%</td>
+                                        <td><?= $session['avg_rating'] === null ? '—' : htmlspecialchars($session['avg_rating']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
+                </div>
+
+                <div class="analytics-table-panel">
+                    <h3>Top Classes</h3>
+                    <?php if (empty($classSummaries)): ?>
+                        <p style="color: var(--text-muted);">No class performance data yet.</p>
+                    <?php else: ?>
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>Class</th>
+                                    <th>Sessions</th>
+                                    <th>Enrollments</th>
+                                    <th>Avg. Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($classSummaries as $class): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($class['class_name']) ?></td>
+                                        <td><?= (int)$class['session_count'] ?></td>
+                                        <td><?= (int)$class['total_enrollments'] ?></td>
+                                        <td><?= $class['average_rating'] === null ? '—' : htmlspecialchars($class['average_rating']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+           <?php if (!empty($recentReviews)): ?>
+                <div class="analytics-reviews-panel">
+                    <h3>Recent Reviews</h3>
+                    <ul class="review-list">
+                        <?php foreach ($recentReviews as $review): ?>
+                            <li>
+                                <div class="review-header">
+                                    <strong><?= htmlspecialchars($review['member_name']) ?></strong>
+                                    <span><?= htmlspecialchars($review['class_name']) ?></span>
+                                    <span><?= (int)$review['rating'] ?>/5</span>
+                                </div>
+                                <p><?= htmlspecialchars($review['review']) ?></p>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </section>
+
+        <hr style="border: 0; height: 1px; background: rgba(255, 255, 255, 0.1); margin: 4rem 0 2rem 0;">
+        <h2 style="margin-bottom: 2rem;">Manage Schedule & Rosters</h2>
+
         <?php if (empty($sessions)): ?>
             <div class="glass-panel" style="text-align: center; padding: 3rem;">
                 <h3>No classes assigned yet.</h3>
@@ -127,7 +298,13 @@ require_once 'templates/header.php';
                     <!-- Adicionada a classe global hover-card -->
                     <div class="glass-panel session-card hover-card">
                         
-                        <div class="session-header" style="margin-bottom: 1.5rem; padding-right: 0;">
+                        <form method="POST" style="position: absolute; top: 1.5rem; right: 1.5rem;" onsubmit="return confirm('Are you sure you want to cancel this entire class? This cannot be undone.');">
+                            <input type="hidden" name="action" value="cancel_class">
+                            <input type="hidden" name="session_id" value="<?= $sid ?>">
+                            <button type="submit" class="btn" style="background: rgba(255, 76, 76, 0.1); color: #ff9b9b; border: 1px solid rgba(255, 76, 76, 0.3); padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 4px;">Cancel Class</button>
+                        </form>
+
+                        <div class="session-header">
                             <h2><?= htmlspecialchars($session['class_name']) ?></h2>
                             <span class="badge badge--gold" style="white-space: nowrap;"><?= htmlspecialchars($session['room']) ?></span>
                         </div>

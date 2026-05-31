@@ -41,7 +41,7 @@
 
             <div class="nav-actions">
                 <a href="/profile.php" class="nav-link u-lift<?= isset($activePage) && $activePage === 'profile' ? ' active' : '' ?>">
-                    <svg class="nav-icon"><use href="assets/img/icons.svg#icon-user"></use></svg>
+                    <svg class="nav-icon"><use href="/assets/img/icons.svg#icon-user"></use></svg>
                     <span>PROFILE</span>
                 </a>
             </div>

@@ -13,9 +13,226 @@
 
 .sessions-grid {
     display: grid;
-    /* Reduzimos de 350px para 280px para caberem 3 a 4 cartões por linha */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem; 
+    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+    gap: 2rem;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.analytics-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 130px;
+}
+
+.analytics-card strong {
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+.metric-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.analytics-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.analytics-table-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.analytics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.analytics-table th,
+.analytics-table td {
+    padding: 0.85rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-light);
+}
+
+.analytics-table th {
+    color: var(--gold);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.analytics-table tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.analytics-reviews-panel {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.review-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.review-list li {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.review-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.review-header strong {
+    color: var(--gold);
+}
+
+.review-header span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.analytics-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 130px;
+}
+
+.analytics-card strong {
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+.metric-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.analytics-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.analytics-table-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.analytics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.analytics-table th,
+.analytics-table td {
+    padding: 0.85rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-light);
+}
+
+.analytics-table th {
+    color: var(--gold);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.analytics-table tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.analytics-reviews-panel {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.review-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.review-list li {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.review-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.review-header strong {
+    color: var(--gold);
+}
+
+.review-header span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 /* === CARTÕES DAS AULAS (Mais quadrados e compactos) === */
@@ -34,9 +251,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-    padding-right: 0; /* Removemos o espaçamento antigo do botão */
+    margin-bottom: 1rem;
+    padding-right: 9rem; 
 }
 
 .session-header h2 {
@@ -113,21 +329,9 @@
     border-radius: 3px;
 }
 
-.roster-list::-webkit-scrollbar-thumb:hover {
-    background: var(--gold);
-}
 
-/* === RESPONSIVIDADE PARA ECRÃS MENORES === */
-@media (max-width: 950px) {
-    .sessions-grid {
-        /* Força a exibir exatamente 2 por linha em ecrãs médios/tablets */
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 650px) {
-    .sessions-grid {
-        /* Passa a 1 por linha nos telemóveis para conseguir ler tudo */
+@media (max-width: 900px) {
+    .analytics-tables {
         grid-template-columns: 1fr;
     }
 }
