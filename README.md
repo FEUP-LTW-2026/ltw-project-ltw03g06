@@ -41,7 +41,8 @@ The class schedule page now uses AJAX live search so filters update the session 
 - [ ] Oversee and ensure the smooth operation of the entire system.
 
 **Extra:**
-- [ ] Something extra (e.g., personal training bookings, membership plans, waitlist, ...).
+- [x] Trainer analytics dashboard for attendance, ratings, and class engagement.
+- [x] Admin analytics dashboard for popular classes, equipment usage, and member retention.
 
 ## Running
 
