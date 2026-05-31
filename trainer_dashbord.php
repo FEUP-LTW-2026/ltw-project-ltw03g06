@@ -270,7 +270,7 @@ require_once 'templates/header.php';
                 </div>
             </div>
 
-            <?php if (!empty($recentReviews)): ?>
+           <?php if (!empty($recentReviews)): ?>
                 <div class="analytics-reviews-panel">
                     <h3>Recent Reviews</h3>
                     <ul class="review-list">
@@ -289,6 +289,9 @@ require_once 'templates/header.php';
             <?php endif; ?>
         </section>
 
+        <hr style="border: 0; height: 1px; background: rgba(255, 255, 255, 0.1); margin: 4rem 0 2rem 0;">
+        <h2 style="margin-bottom: 2rem;">Manage Schedule & Rosters</h2>
+
         <?php if (empty($sessions)): ?>
             <div class="glass-panel" style="text-align: center; padding: 3rem;">
                 <h3>No classes assigned yet.</h3>
@@ -301,10 +304,10 @@ require_once 'templates/header.php';
                         <form method="POST" style="position: absolute; top: 1.5rem; right: 1.5rem;" onsubmit="return confirm('Are you sure you want to cancel this entire class? This cannot be undone.');">
                             <input type="hidden" name="action" value="cancel_class">
                             <input type="hidden" name="session_id" value="<?= $sid ?>">
-                            <button type="submit" class="btn btn--outline" style="color: #ff4c4c; border-color: #ff4c4c; padding: 0.5rem 1rem; font-size: 0.8rem;">Cancel Class</button>
+                            <button type="submit" class="btn" style="background: rgba(255, 76, 76, 0.1); color: #ff9b9b; border: 1px solid rgba(255, 76, 76, 0.3); padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 4px;">Cancel Class</button>
                         </form>
 
-                        <div class="session-header" style="margin-bottom: 1rem; padding-right: 7rem;">
+                        <div class="session-header">
                             <h2><?= htmlspecialchars($session['class_name']) ?></h2>
                             <span class="room-badge"><?= htmlspecialchars($session['room']) ?></span>
                         </div>
