@@ -122,8 +122,8 @@ require_once 'templates/header.php';
     </section>
 
     <?php if ($flashMessage !== null): ?>
-        <div class="empty-state <?= $flashType === 'success' ? 'session-badge--available' : 'session-badge--full' ?>" style="margin-bottom: 1.25rem;">
-            <strong><?= htmlspecialchars($flashMessage) ?></strong>
+        <div class="alert <?= $flashType === 'success' ? 'alert-success' : 'alert-error' ?>" style="margin-bottom: 1.5rem;">
+            <?= htmlspecialchars($flashMessage) ?>
         </div>
     <?php endif; ?>
 
@@ -200,7 +200,7 @@ require_once 'templates/header.php';
         <h2>Your attended classes</h2>
         <p>These sessions are already in your history, so you can leave or update a review.</p>
 
-        <div class="sessions-grid" style="margin-top: 1rem;">
+        <div class="sessions-grid">
             <?php if (empty($attendedSessions)): ?>
                 <div class="empty-state">
                     <h3>No past attended classes yet.</h3>

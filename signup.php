@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recolher os dados do formulário
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? ''; // <-- Adicionado!
+    $password = $_POST['password'] ?? ''; 
     $phone = trim($_POST['phone'] ?? '');
     $birthdate = $_POST['birthdate'] ?? '';
     $gender = $_POST['gender'] ?? '';
@@ -61,15 +61,15 @@ require_once 'templates/header.php';
             <?= csrf_input() ?>
             
             <?php if ($error): ?>
-                <div class="alert alert-error" style="color: var(--error); margin-bottom: 1rem; text-align: center; font-weight: bold;">
+                <div class="alert alert-error">
                     <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif; ?>
             
             <?php if ($success): ?>
-                <div class="alert alert-success" style="color: var(--success); margin-bottom: 1rem; text-align: center; font-weight: bold;">
+                <div class="alert alert-success">
                     <?= htmlspecialchars($success) ?>
-                    <br><a href="login.php" style="color: var(--gold);">Click here to Login</a>
+                    <br><a href="login.php" style="color: var(--gold); margin-top: 0.5rem; display: inline-block;">Click here to Login</a>
                 </div>
             <?php endif; ?>
 
@@ -144,18 +144,18 @@ require_once 'templates/header.php';
     const togglePasswordBtn = document.querySelector('#togglePassword');
     const passwordInput = document.querySelector('#password');
 
-    togglePasswordBtn.addEventListener('click', function () {
-        // Verifica o tipo atual e alterna
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        
-        // Opcional: Mudar a cor do ícone para dar feedback de que está ativo
-        if (type === 'text') {
-            this.style.color = 'var(--gold)';
-        } else {
-            this.style.color = 'var(--text-muted)';
-        }
-    });
+    if(togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                this.style.color = 'var(--gold)';
+            } else {
+                this.style.color = 'var(--text-muted)';
+            }
+        });
+    }
 </script>
 
 <?php require_once 'templates/footer.php'; ?>
