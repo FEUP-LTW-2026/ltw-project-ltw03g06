@@ -1,5 +1,3 @@
-/* css/trainer_dashboard.css */
-
 .dashboard-page {
     width: 100%;
     padding-bottom: 5rem;
@@ -126,125 +124,10 @@
     font-size: 0.9rem;
 }
 
-.analytics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.analytics-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    min-height: 130px;
-}
-
-.analytics-card strong {
-    font-size: 2rem;
-    color: var(--gold);
-}
-
-.metric-label {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.analytics-tables {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.analytics-table-panel {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-}
-
-.analytics-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
-
-.analytics-table th,
-.analytics-table td {
-    padding: 0.85rem 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-light);
-}
-
-.analytics-table th {
-    color: var(--gold);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.analytics-table tr:hover {
-    background: rgba(255, 255, 255, 0.04);
-}
-
-.analytics-reviews-panel {
-    margin-top: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1.5rem;
-}
-
-.review-list {
-    list-style: none;
-    margin: 1rem 0 0;
-    padding: 0;
-    display: grid;
-    gap: 1rem;
-}
-
-.review-list li {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 1rem;
-    border-radius: 8px;
-}
-
-.review-header {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
-}
-
-.review-header strong {
-    color: var(--gold);
-}
-
-.review-header span {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-/* === CARTÕES DAS AULAS (Mais quadrados e compactos) === */
 .session-card {
-    padding: 1.25rem; /* Margens interiores ligeiramente mais pequenas */
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px; /* Cantos um bocadinho mais redondos */
-    backdrop-filter: blur(10px);
-    min-height: 380px; /* Força um aspeto mais "bloco/quadrado" em vez de elástico */
 }
 
 .session-header {
@@ -256,27 +139,40 @@
 }
 
 .session-header h2 {
-    font-size: 1.25rem; /* Letra do título um bocadinho mais pequena */
-    letter-spacing: -0.4px;
-    color: var(--text-light);
-    line-height: 1.1;
+    font-size: 1.5rem;
+    color: var(--gold);
     margin: 0;
 }
 
-.session-time {
-    color: var(--text-muted);
-    font-size: 0.85rem; /* Letra da hora mais compacta */
-    line-height: 1.5;
-    margin-bottom: 1.2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.room-badge {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-/* === LISTA DE ALUNOS (ROSTER) === */
+.session-time {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.roster-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
 .empty-roster {
     color: var(--text-muted);
     font-style: italic;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
 .roster-list {
@@ -285,16 +181,14 @@
     margin: 0;
     flex-grow: 1;
     overflow-y: auto;
-    max-height: 180px; /* Mais curto para manter o cartão no formato quadrado */
-    padding-right: 0.5rem;
+    max-height: 250px;
 }
 
 .roster-list li {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-direction: column;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .roster-list li:last-child {
@@ -302,30 +196,25 @@
 }
 
 .roster-list li strong {
-    color: var(--text-light);
-    font-size: 0.85rem;
-    display: block;
-    margin-bottom: 0.2rem;
+    color: #ffffff;
+    font-size: 0.95rem;
 }
 
 .roster-list li span {
     color: var(--text-muted);
-    font-size: 0.75rem;
-    display: block;
+    font-size: 0.85rem;
 }
 
-/* === ESTILIZAÇÃO DO SCROLLBAR === */
 .roster-list::-webkit-scrollbar {
-    width: 5px; /* Barra de scroll ligeiramente mais fina */
+    width: 6px;
 }
 
 .roster-list::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .roster-list::-webkit-scrollbar-thumb {
-    background: rgba(212, 175, 55, 0.4);
+    background: var(--gold);
     border-radius: 3px;
 }
 
