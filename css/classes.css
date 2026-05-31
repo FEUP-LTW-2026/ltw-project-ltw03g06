@@ -50,30 +50,6 @@
     color: var(--gold);
 }
 
-.filter-grid input,
-.filter-grid select,
-.review-grid input,
-.review-grid select,
-.review-grid textarea {
-    width: 100%;
-    padding: 0.95rem 1rem;
-    background: rgba(0, 0, 0, 0.42);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-    color: var(--text-light);
-    font-family: var(--font-main);
-    transition: border-color var(--transition), transform var(--transition);
-}
-
-.filter-grid input:focus,
-.filter-grid select:focus,
-.review-grid input:focus,
-.review-grid select:focus,
-.review-grid textarea:focus {
-    outline: none;
-    border-color: var(--gold);
-}
-
 .filter-submit {
     align-self: end;
 }
