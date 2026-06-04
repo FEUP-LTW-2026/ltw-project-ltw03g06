@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../utils/connection.php';
 require_once __DIR__ . '/../utils/schedule.php';
+require_once __DIR__ . '/../utils/csrf.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
